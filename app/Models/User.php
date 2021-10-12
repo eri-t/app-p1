@@ -9,8 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Skill;
-use Education;
+use App\Models\Skill;
+use App\Models\Education;
+use App\Models\Work;
+use App\Models\Activity;
+use App\Models\Project;
 
 class User extends Authenticatable
 {
@@ -29,7 +32,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        // 'address'
     ];
 
     /**
@@ -70,5 +72,20 @@ class User extends Authenticatable
     public function education()
     {
         return $this->hasMany(Education::class, 'user_id', 'id');
+    }
+
+    public function works()
+    {
+        return $this->hasMany(Work::class, 'user_id', 'id');
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class, 'user_id', 'id');
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'user_id', 'id');
     }
 }

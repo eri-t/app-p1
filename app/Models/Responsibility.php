@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Work;
 
-class Skill extends Model
+class Responsibility extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function work()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(Work::class);
     }
 }

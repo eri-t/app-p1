@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
+use App\Models\Project;
 
-class Skill extends Model
+class Testimonial extends Model
 {
     use HasFactory;
 
-    public function user()
+    public function project()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(Project::class);
     }
 }
