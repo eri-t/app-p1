@@ -14,6 +14,7 @@ use App\Models\Education;
 use App\Models\Work;
 use App\Models\Activity;
 use App\Models\Project;
+use App\Models\Post;
 
 class User extends Authenticatable
 {
@@ -87,5 +88,10 @@ class User extends Authenticatable
     public function projects()
     {
         return $this->hasMany(Project::class, 'user_id', 'id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id', 'id');
     }
 }
