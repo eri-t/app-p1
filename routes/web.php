@@ -30,17 +30,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/portfolio', function () {
 */
 // Route::view('/portfolio', 'portfolio');
 
-Route::get('portfolio', function () {
-    $users = User::get();
-    $activityIcons = array("fa-object-ungroup", "fa-code", "fa-bullseye");
-    $iconColors = array("sky-color", "iron-color", "purple-color");
-    $featuredImages = array("b-1.png", "b-2.png", "b-3.png");
-    // dd($users);
-    // dd($users[0]);
-    // dd($users[0]->projects[0]);
-    // dd($users[0]->projects[0]->testimonials);
-    // dd($users[0]->education);
-    // dd($users[0]->works);
-    // dd($users[0]->works[0]->responsibilities);
-    return view('portfolio')->with('user', $users[1])->with('icons', $activityIcons)->with('colors', $iconColors)->with('featuredImages', $featuredImages);
-});
+
+Route::get(
+    'portfolio/{slug}',
+    function ($slug) {
+        $user = User::with('education', 'skills', 'works', 'activities', 'projects', 'posts', 'projects.testimonials', 'works.responsibilities')->where('slug', $slug)->first();
+
+        $activityIcons = array("fa-object-ungroup", "fa-code", "fa-bullseye");
+        $iconColors = array("sky-color", "iron-color", "purple-color");
+        $featuredImages = array("b-1.png", "b-2.png", "b-3.png");
+
+        // dd($user);
+
+        if ($user) {
+            return view('portfolio')->with('user', $user)->with('icons', $activityIcons)->with('colors', $iconColors)->with('featuredImages', $featuredImages);
+        } else {
+            return view('welcome');
+        }
+    }
+);

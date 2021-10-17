@@ -1,6 +1,5 @@
 @include('includes.header')
 
-
     <!--
         ===================
            Home
@@ -94,7 +93,7 @@
                 </div>
 
                 @foreach ($user->activities as $activity)
-                <div class="col-sm-4">
+                <div class="col-sm-4 mb-4">
                     <div class="mh-service-item shadow-1 dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <i class="fa {{ $icons[rand(0,count($icons)-1)]}} {{ $colors[rand(0,count($colors)-1)]}}"></i>
                         <h3>{{ ucfirst($activity->title) }}</h3>
@@ -124,6 +123,7 @@
                     <div class="col-sm-12">
                         <div class="mh-single-project-slide-by-side row">
                             <!-- Project Items -->
+                            <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
                             @for ($i = 0; $i < 3; $i++)
                             <div class="col-sm-12 mh-featured-item">
                                 <div class="row">
@@ -141,6 +141,7 @@
                                             <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">View Details</a>
                                             <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
                                                 @if (count($user->projects[$i]->testimonials)>2)
+                                                    <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
                                                     @for ($j = 0; $j < 3; $j++)
                                                     <blockquote>
                                                         <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
@@ -251,7 +252,7 @@
                                 <div class="mh-work-item dark-bg wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
                                     <h4>{{ $work->position }} <a href="#">{{ $work->company_name }}</a></h4>
                                     <div class="mh-eduyear">{{ $work->start_date }}-{{ $work->finish_date }}</div>
-                                    <span>Responsibility :</span>
+                                    <span>Responsibilities :</span>
                                     <ul class="work-responsibility">
                                         @foreach ($work->responsibilities as $responsibility)
                                         <li><i class="fa fa-circle"></i>{{ $responsibility->description }}</li>                                            

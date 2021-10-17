@@ -13,6 +13,10 @@
                     <div class="container mt-30">
                         <div class="row">
                             <div class="col-sm-12 col-md-6 mh-footer-address">
+                                <!--
+                                <div class="col-sm-12 xs-no-padding" id="mh-map">
+                                </div>
+                            -->
                                 <div class="col-sm-12 xs-no-padding">
                                     <div class="mh-address-footer-item dark-bg shadow-1 media wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
                                         <div class="each-icon">
@@ -129,15 +133,16 @@
     <script src="{{ asset('assets/plugins/js/jquery.nav.js') }}"></script>
     <!-- Fancybox js-->
     <script src="{{ asset('assets/plugins/js/jquery.fancybox.min.js') }}"></script>
-    <!-- Map api -->
-    <script src="{{ asset('http://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyCRP2E3BhaVKYs7BvNytBNumU0MBmjhhxc&callback=init') }}"></script>
-    <!-- isotope js-->
+<!-- isotope js-->
     <script src="{{ asset('assets/plugins/js/isotope.pkgd.js') }}"></script>
     <script src="{{ asset('assets/plugins/js/packery-mode.pkgd.js') }}"></script>
     <!-- Custom Scripts-->
     <script src="{{ asset('assets/js/map-init.js') }}"></script>
     <script src="{{ asset('assets/js/custom-scripts.js') }}"></script>
-
+    <!-- Map api -->
+    <!--
+    <script src="{{ asset('https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyCRP2E3BhaVKYs7BvNytBNumU0MBmjhhxc&callback=init') }}"></script>
+    -->
 
     <!-- ****************
       After neccessary customization/modification, Please minify 
