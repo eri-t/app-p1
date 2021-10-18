@@ -125,36 +125,40 @@
                             <!-- Project Items -->
                             <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
                             @for ($i = 0; $i < 3; $i++)
-                            <div class="col-sm-12 mh-featured-item">
-                                <div class="row">
-                                    <div class="col-sm-7">
-                                        <div class="mh-featured-project-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                                            <img src="{{ asset('assets/images/p-2.png') }}" alt="" class="img-fluid">
+                                @isset ($user->projects[$i])                                
+                                <div class="col-sm-12 mh-featured-item">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <div class="mh-featured-project-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
+                                                <img src="{{ asset('assets/images/p-2.png') }}" alt="" class="img-fluid">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <div class="mh-featured-project-content">
-                                            <h4 class="project-category wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">{{ $user->projects[$i]->category }}</h4>
-                                            <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">{{ $user->projects[$i]->title }}</h2>
-                                            <span class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">{{ $user->projects[$i]->subtitle }}</span>
-                                            <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">{{ $user->projects[$i]->description }}</p>
-                                            <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">View Details</a>
-                                            <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
-                                                @if (count($user->projects[$i]->testimonials)>2)
-                                                    <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
-                                                    @for ($j = 0; $j < 3; $j++)
-                                                    <blockquote>
-                                                        <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
-                                                        <cite>- {{ $user->projects[$i]->testimonials[$j]->name }}</cite>
-                                                    </blockquote>                                                    
-                                                    @endfor    
-                                                @endif
+                                        <div class="col-sm-5">
+                                            <div class="mh-featured-project-content">
+                                                <h4 class="project-category wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">{{ $user->projects[$i]->category }}</h4>
+                                                <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">{{ $user->projects[$i]->title }}</h2>
+                                                <span class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">{{ $user->projects[$i]->subtitle }}</span>
+                                                <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">{{ $user->projects[$i]->description }}</p>
+                                                <a href="#" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">View Details</a>
+                                                <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
+                                                
+                                                    @if (count($user->projects[$i]->testimonials)>2)
+                                                        <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
+                                                        @for ($j = 0; $j < 3; $j++)
+                                                         <blockquote>
+                                                            <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
+                                                            <cite>- {{ $user->projects[$i]->testimonials[$j]->name }}</cite>
+                                                        </blockquote>   
+                                                
+                                                        @endfor    
+                                                    @endif
 
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>                                
+                                @endisset                                
                             @endfor
                         </div>
                     </div>

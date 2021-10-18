@@ -5,7 +5,7 @@
         -->
     <footer class="mh-footer mh-footer-3" id="mh-contact">
         <div class="container-fluid">
-            <div class="row section-separator">
+            <div class="row section-separator pb-4">
                 <div class="col-sm-12 section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
                     <h3>Contact Me</h3>
                 </div>
@@ -133,7 +133,7 @@
     <script src="{{ asset('assets/plugins/js/jquery.nav.js') }}"></script>
     <!-- Fancybox js-->
     <script src="{{ asset('assets/plugins/js/jquery.fancybox.min.js') }}"></script>
-<!-- isotope js-->
+    <!-- isotope js-->
     <script src="{{ asset('assets/plugins/js/isotope.pkgd.js') }}"></script>
     <script src="{{ asset('assets/plugins/js/packery-mode.pkgd.js') }}"></script>
     <!-- Custom Scripts-->

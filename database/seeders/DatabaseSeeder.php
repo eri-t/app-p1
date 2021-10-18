@@ -28,8 +28,8 @@ class DatabaseSeeder extends Seeder
         Work::factory(15)->create();
         Activity::factory(30)->create();
         Project::factory(20)->create();
-        Testimonial::factory(80)->create();
+        Testimonial::factory(100)->create();
         Responsibility::factory(60)->create();
-        Post::factory(20)->create();
+        Post::factory(30)->create();
     }
 }
