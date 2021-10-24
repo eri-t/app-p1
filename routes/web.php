@@ -14,9 +14,24 @@ use App\Models\User;
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
+
+Route::get(
+    '/',
+    function () {
+        $users = User::all();
+        //   dd($users);
+        if ($users) {
+            return view('home')->with('users', $users);
+        } else {
+            return view('welcome');
+        }
+    }
+)->name('/');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -45,7 +60,7 @@ Route::get(
         if ($user) {
             return view('portfolio')->with('user', $user)->with('icons', $activityIcons)->with('colors', $iconColors)->with('featuredImages', $featuredImages);
         } else {
-            return view('welcome');
+            return view('home');
         }
     }
-);
+)->name('portfolio/{slug}');
