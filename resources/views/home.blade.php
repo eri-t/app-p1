@@ -38,6 +38,7 @@
             @endif
 
             <main>
+                @if(isset($users))
                 <h1>Portfolios de usuarios</h1>
                 <ul>
                     @foreach ($users as $user)
@@ -48,6 +49,10 @@
 
                     @endforeach
                 </ul>
+
+                @else
+                    <a href="{{ route('/') }}">Ver usuarios</a>
+                @endif
             </main>
         </div>
     </body>

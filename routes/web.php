@@ -60,7 +60,12 @@ Route::get(
         if ($user) {
             return view('portfolio')->with('user', $user)->with('icons', $activityIcons)->with('colors', $iconColors)->with('featuredImages', $featuredImages);
         } else {
-            return view('home');
+            $users = User::all();
+            if ($users) {
+                return view('home')->with('users', $users);
+            } else {
+                return view('welcome');
+            }
         }
     }
 )->name('portfolio/{slug}');
