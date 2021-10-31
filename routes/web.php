@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,7 @@ Route::get(
 )->name('/');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->name('dashboard');
 
 // Acceder al portfolio sólo si se está logueado:
@@ -69,3 +71,7 @@ Route::get(
         }
     }
 )->name('portfolio/{slug}');
+
+Route::resource('user', UserController::class);
+
+Route::resource('skill', SkillController::class);
