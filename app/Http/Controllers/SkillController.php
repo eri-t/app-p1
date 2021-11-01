@@ -35,7 +35,18 @@ class SkillController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $skill = Skill::create([
+            'name' => $data['name'],
+            'user_id' => intval($data['user_id']),
+            'percent' => 50,
+            'type' => 'technical'
+        ]);
+
+        $status = $skill->save();
+
+        return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('action', 'creada');
     }
 
     /**
@@ -70,9 +81,9 @@ class SkillController extends Controller
     // public function update(Request $request, $id)
     public function update(Request $request, Skill $skill)
     {
-        $skill->update($request->all());
+        $status = $skill->update($request->all());
 
-        return redirect()->to('user/' . $skill->user_id . '/edit');
+        return redirect()->to('user/' . $skill->user_id . '/edit')->with('status', $status)->with('action', 'modificada');
     }
 
     /**
@@ -87,8 +98,8 @@ class SkillController extends Controller
         $id = $skill->user_id;
 
         $skill = Skill::find($skill->id);
-        $skill->delete();
+        $status = $skill->delete();
 
-        return redirect()->to('user/' . $id . '/edit');
+        return redirect()->to('user/' . $id . '/edit')->with('status', $status)->with('action', 'eliminada');
     }
 }
