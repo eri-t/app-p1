@@ -16,27 +16,32 @@
         </div>
 
         <div class="col-12">
-            <form action="{{ route('user.update', $user) }}"
-            method="POST">
+            <form action="{{ route('user.update', $user) }}" 
+                enctype="multipart/form-data"
+                method="POST">
 
-                <div class="form-row">
-                    <div class="col-md">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" >
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label class="text-gray-700 text-sm font-bold mb-2" >
                             Nombre
                         </label>
                         <input id="name" type="text"  name="name" class="form-control" value="{{ old('name', $user->name) }}">
                     </div>
-                    <div class="col">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" >
+                    <div class="col-md-4">
+                        <label class="text-gray-700 text-sm font-bold mb-2" >
                             Título
                         </label>
                         <input id="job_title" type="text"  name="job_title" class="form-control" value="{{ old('job_title', $user->job_title) }}">
+                    </div>
+                    <div class="col-md-4">
+                        <img src="http://lorempixel.com/400/200/" class="img-fluid">
+                        <input type="file" name="file">
                     </div>
                 </div>
 
                 @csrf
                 @method('PUT')
-                <button type="submit" class="site-btn">Guardar Cambios</button>
+                <button type="submit" class="site-btn mt-2">Guardar Cambios</button>
             </form>
         </div>
     </div>

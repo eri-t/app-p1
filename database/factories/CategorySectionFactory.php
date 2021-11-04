@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Responsibility;
+use App\Models\CategorySection;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ResponsibilityFactory extends Factory
+class CategorySectionFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Responsibility::class;
+    protected $model = CategorySection::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,7 @@ class ResponsibilityFactory extends Factory
     public function definition()
     {
         return [
-            'description' => $this->faker->word(),
-            'work_id'     => rand(1, 15),
+            //
         ];
     }
 }

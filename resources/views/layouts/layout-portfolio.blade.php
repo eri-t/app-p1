@@ -37,7 +37,11 @@
                     <div class="col-sm-6">
                         <div class="hero-img wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s">
                             <div class="img-border">
-                                <img src="{{ asset('assets/images/hero.png') }}" alt="" class="img-fluid">
+                                @if ($user->image)
+                                    <img src="{{ $user->get_image }}" alt="{{ $user->name }}"  class="img-fluid">
+                                @else
+                                    <img src="{{ asset('assets/images/hero.png') }}" alt=""  class="img-fluid">
+                                @endif
                             </div>
                         </div>
                     </div>

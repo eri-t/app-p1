@@ -34,6 +34,7 @@ class User extends Authenticatable
         'email',
         'password',
         'job_title',
+        'image'
     ];
 
     /**
@@ -94,5 +95,17 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    public function getGetImageAttribute($key)
+    {
+        if ($this->image) {
+            return url("storage/$this->image");
+        }
+    }
+
+    public function getUppercaseAttribute($key)
+    {
+        return strtoupper($this->name);
     }
 }

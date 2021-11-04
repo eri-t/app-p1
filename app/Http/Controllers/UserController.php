@@ -78,6 +78,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         // $user = User::find($id);
+
+        if ($request->file('file')) {
+            $user->image = $request->file('file')->store('users', 'public');
+            $user->save();
+        }
+
         $user->update($request->all());
         $id = $user->id;
         return redirect()->to('user/' . $id . '/edit');
