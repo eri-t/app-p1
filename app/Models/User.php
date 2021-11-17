@@ -15,6 +15,7 @@ use App\Models\Work;
 use App\Models\Activity;
 use App\Models\Project;
 use App\Models\Post;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -23,6 +24,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +36,9 @@ class User extends Authenticatable
         'email',
         'password',
         'job_title',
-        'image'
+        'image',
+        'phone_number',
+        'address'
     ];
 
     /**

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SkillController;
+use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,10 +35,36 @@ Route::get(
         }
     }
 )->name('/');
-
+/*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
+*/
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::group(['middleware' => ['role:admin']], function () {
+
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
+
+        Route::resource('user', UserController::class)->except([
+            'show'
+        ]);
+
+        Route::resource('skill', SkillController::class)->except([
+            'show'
+        ]);
+    });
+});
+
+
+Route::group(['middleware' => ['role:client']], function () {
+
+    Route::get('dashboard', function () {
+
+        return view('dashboard');
+    })->name('dashboard');
+});
 
 // Acceder al portfolio sólo si se está logueado:
 /*
