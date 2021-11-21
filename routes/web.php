@@ -43,9 +43,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
 
-        Route::get('/dashboard', function () {
+        Route::get('admin/dashboard', function () {
             return view('admin.dashboard');
-        })->name('dashboard');
+        })->name('admin.dashboard');
 
         Route::resource('user', UserController::class)->except([
             'show'
@@ -64,6 +64,11 @@ Route::group(['middleware' => ['role:client']], function () {
 
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('my-portfolio', function () {
+
+        return view('my-portfolio');
+    })->name('my-portfolio');
 });
 
 // Acceder al portfolio sólo si se está logueado:

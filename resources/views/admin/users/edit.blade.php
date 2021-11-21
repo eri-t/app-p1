@@ -25,7 +25,7 @@
                         </label>
                         <input id="name" type="text" name="name" class="form-control" value="{{ old('name', $user->name) }}">
                         @error('name')
-                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3">{{ $message }}</div>
+                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-4">
@@ -34,7 +34,7 @@
                         </label>
                         <input id="job_title" type="text" name="job_title" class="form-control" value="{{ old('job_title', $user->job_title) }}">
                         @error('job_title')
-                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3">{{ $message }}</div>
+                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-4">
@@ -45,7 +45,7 @@
                         @endif
                         <input type="file" name="file">
                         @error('file')
-                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3">{{ $message }}</div>
+                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-4">
@@ -54,7 +54,7 @@
                         </label>
                         <input id="phone_number" type="text" name="phone_number" class="form-control" value="{{ old('phone_number', $user->phone_number) }}">
                         @error('phone_number')
-                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3">{{ $message }}</div>
+                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-4">
@@ -63,7 +63,7 @@
                         </label>
                         <input id="address" type="text" name="address" class="form-control" value="{{ old('address', $user->address) }}">
                         @error('address')
-                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3">{{ $message }}</div>
+                        <div class="bg-danger w-100 p-3 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>

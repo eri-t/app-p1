@@ -27,9 +27,10 @@ class UserRequest extends FormRequest
             'name' => 'required | min:5 | max:64',
             'job_title' => 'required | min:5 | max:64',
             'address' => 'required | min:5 | max:64',
-            'phone_number' => 'required | numeric | min:5 | max:12',
+            'phone_number' => 'required | numeric |regex:/[0-9]{8}/',
+            // 'phone_number' => 'required | numeric | min:5 | max:12',
             //    'file' => 'image | dimensions:min_width=100,min_height=200 | size:512',
-            'file' => 'mimes:jpeg | dimensions:min_width=100,min_height=200 | size:512',
+            'file' => 'mimes:jpeg,png | dimensions:min_width=100,min_height=200 | size:512',
         ];
     }
 }
