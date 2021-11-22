@@ -9,7 +9,7 @@
                     @if ($user->image)
                         <img class="card-img-top" src="{{ $user->get_image }}" alt="{{ $user->name }}">
                     @else
-                        <img class="card-img-top" src="http://lorempixel.com/400/200/" alt="Card image cap">
+                        <img class="card-img-top" src="https://lorempixel.com/400/200/" alt="Card image cap">
                     @endif
                     <h5 class="card-title">{{ $user->uppercase }}</h5>
                     <p class="card-text">{{ $user->title_job }}</p>

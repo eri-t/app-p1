@@ -1,16 +1,26 @@
-<form action="{{ route('skill.store') }}"
-    method="POST">
+<form action="{{ route('skill.store') }}" method="POST">
 
-    <div class="form-row">
-        <div class="col-md-12">
-            <label class="text-gray-700 text-sm font-bold mb-2" >
+    <div class="row mt-3">
+        <div class="col-sm-auto">
+            <label for="name" class="form-label">
                 Nueva Habilidad
             </label>
-            <input id="name" type="text"  name="name" class="form-control" placeholder="Nueva Habilidad">
-            <input type="hidden" name="user_id" value="{{ $user->id }}">
+
+            <input id="name" type="text" name="name" class="form-control" placeholder="Nueva Habilidad">
         </div>
 
+        <div class="col-sm-auto">
+            <label for="percent" class="form-label">
+                Porcentaje
+            </label>
+
+            <input id="percent" type="text" name="percent" class="form-control" placeholder="Porcentaje">
+        </div>
+
+        <div class="col-sm-auto d-flex align-items-end">
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            @csrf
+            <button class="btn btn-success mt-1" type="submit" class="site-btn">Agregar</button>
+        </div>
     </div>
-    @csrf
-    <button class="bg-success text-white btn btn-lg" type="submit" class="site-btn">Agregar</button>
 </form>

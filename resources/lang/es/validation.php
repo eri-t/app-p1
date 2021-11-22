@@ -172,6 +172,6 @@ return [
         'job_title' => "'título'",
         'phone_number' => "'teléfono'",
         'address' => "'dirección'",
-        'file' => "'imagen'",
+        'file' => "'imagen de perfil'",
     ],
 ];
