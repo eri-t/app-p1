@@ -83,7 +83,7 @@ return [
     'max'                  => [
         'array'   => ':attribute no debe tener más de :max elementos.',
         'file'    => ':attribute no debe ser mayor que :max kilobytes.',
-        'numeric' => ':attribute no debe ser mayor que :max.',
+        'numeric' => 'El campo :attribute no debe ser mayor que :max.',
         'string'  => ':attribute no debe ser mayor que :max caracteres.',
     ],
     'mimes'                => 'El campo :attribute debe ser un archivo con formato: :values.',
@@ -92,7 +92,7 @@ return [
         'array'   => ':attribute debe tener al menos :min elementos.',
         'file'    => 'El tamaño de :attribute debe ser de al menos :min kilobytes.',
         'numeric' => 'El tamaño de :attribute debe ser de al menos :min.',
-        'string'  => ':attribute debe contener al menos :min caracteres.',
+        'string'  => 'El campo :attribute debe contener al menos :min caracteres.',
     ],
     'multiple_of'          => 'El campo :attribute debe ser múltiplo de :value',
     'not_in'               => 'El campo :attribute es inválido.',
@@ -168,10 +168,12 @@ return [
     */
 
     'attributes' => [
-        'name' => "'nombre'",
+        'name' => "'nombre'",       
         'job_title' => "'título'",
         'phone_number' => "'teléfono'",
         'address' => "'dirección'",
         'file' => "'imagen de perfil'",
+        'skill.name' => "'nombre de la habilidad'",
+        'skill.percent' => "'porcentaje de la habilidad'",
     ],
 ];

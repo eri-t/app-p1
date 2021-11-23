@@ -5,6 +5,7 @@ namespace App\Actions\Fortify;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 
@@ -34,6 +35,21 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         $user->assignRole('client');
+
+        $slug = Str::of($user->name)->slug('-');
+
+        //Check if this Slug already exists 
+        $checkSlug = $user->whereSlug($slug)->exists();
+
+        if ($checkSlug) {
+            //Slug already exists.
+                $newSlug = $slug . "-" . $user->id; 
+                $newSlug = Str::slug($newSlug); //String Slug
+                $slug = $newSlug; //New Slug 
+        }
+
+        $user->slug = $slug;
+        $user->save();
 
         return $user;
     }

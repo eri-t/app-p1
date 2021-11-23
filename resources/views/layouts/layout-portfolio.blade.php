@@ -151,14 +151,14 @@
                                             <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
 
                                                 @if (count($user->projects[$i]->testimonials)>2)
-                                                <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
-                                                @for ($j = 0; $j < 3; $j++) <blockquote>
-                                                    <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
-                                                    <cite>- {{ $user->projects[$i]->testimonials[$j]->name }}</cite>
-                                                    </blockquote>
+                                                    <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
+                                                    @for ($j = 0; $j < 3; $j++) <blockquote>
+                                                        <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
+                                                        <cite>- {{ $user->projects[$i]->testimonials[$j]->name }}</cite>
+                                                        </blockquote>
 
                                                     @endfor
-                                                    @endif
+                                                @endif
 
                                             </div>
                                         </div>

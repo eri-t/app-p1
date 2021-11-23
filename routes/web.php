@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\NetworkController;
 use Spatie\Permission\Models\Role;
 
 /*
@@ -47,16 +48,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             return view('admin.dashboard');
         })->name('admin.dashboard');
 
-        Route::resource('user', UserController::class)->except([
-            'show'
-        ]);
+        Route::resource('user', UserController::class);
 
-        Route::resource('skill', SkillController::class)->except([
-            'show'
-        ]);
+        Route::resource('skill', SkillController::class);
+
+        Route::resource('network', NetworkController::class);
     });
-});
-
 
 Route::group(['middleware' => ['role:client']], function () {
 
@@ -65,10 +62,23 @@ Route::group(['middleware' => ['role:client']], function () {
         return view('dashboard');
     })->name('dashboard');
 
+        Route::resource('user', UserController::class)->only([
+            'create','update','store','destroy'
+        ]);
+
+        Route::resource('skill', SkillController::class)->only([
+            'create','update','store','destroy'
+        ]);
+
+        Route::resource('network', NetworkController::class)->only([
+            'create','update','store','destroy'
+        ]);
+
     Route::get('my-portfolio', function () {
 
         return view('my-portfolio');
     })->name('my-portfolio');
+});
 });
 
 // Acceder al portfolio sólo si se está logueado:
@@ -83,7 +93,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/portfolio', function () {
 Route::get(
     'portfolio/{slug}',
     function ($slug) {
-        $user = User::with('education', 'skills', 'works', 'activities', 'projects', 'posts', 'projects.testimonials', 'works.responsibilities')->where('slug', $slug)->first();
+        $user = User::with('education', 'skills', 'works', 'activities', 'projects', 'posts','networks', 'projects.testimonials', 'works.responsibilities')->where('slug', $slug)->first();
 
         $activityIcons = array("fa-object-ungroup", "fa-code", "fa-bullseye");
         $iconColors = array("sky-color", "iron-color", "purple-color");
@@ -107,3 +117,5 @@ Route::get(
 Route::resource('user', UserController::class);
 
 Route::resource('skill', SkillController::class);
+
+Route::resource('network', NetworkController::class);

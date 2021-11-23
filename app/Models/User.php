@@ -15,6 +15,7 @@ use App\Models\Work;
 use App\Models\Activity;
 use App\Models\Project;
 use App\Models\Post;
+use App\Models\Network;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -99,6 +100,11 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    public function networks()
+    {
+        return $this->hasMany(Network::class, 'user_id', 'id');
     }
 
     public function getGetImageAttribute($key)

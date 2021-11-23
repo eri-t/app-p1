@@ -26,6 +26,8 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required | min:5 | max:64',
             'job_title' => 'required | min:5 | max:64',
+            'email' => 'required | unique:users',
+            'slug' => 'required | unique:users',
             'address' => 'required | min:5 | max:64',
             'phone_number' => 'required | numeric |regex:/[0-9]{8}/',
             // 'phone_number' => 'required | numeric | min:5 | max:12',

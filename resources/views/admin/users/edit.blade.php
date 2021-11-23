@@ -43,6 +43,24 @@
                             </div>
                             <div class="col-lg-6 pt-3">
                                 <label class="form-label">
+                                    Email <span class="small text-secondary fst-italic">(Requerido)</span>
+                                </label>
+                                <input id="email" type="text" name="email" class="form-control" value="{{ old('email', $user->email) }}">
+                                @error('email')
+                                <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 pt-3">
+                                <label class="form-label">
+                                    Slug <span class="small text-secondary fst-italic">(Requerido)</span>
+                                </label>
+                                <input id="slug" type="text" name="slug" class="form-control" value="{{ old('slug', $user->slug) }}">
+                                @error('slug')
+                                <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-lg-6 pt-3">
+                                <label class="form-label">
                                     Teléfono <span class="small text-secondary fst-italic">(Requerido)</span>
                                 </label>
                                 <input id="phone_number" type="text" name="phone_number" class="form-control" value="{{ old('phone_number', $user->phone_number) }}">
@@ -109,19 +127,38 @@
                 <div class="d-flex align-items-start">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <button class="nav-link active my-1" id="v-pills-new-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new" type="button" role="tab" aria-controls="v-pills-new" aria-selected="true">Agregar Habilidad</button>
+                        @if (count($user->skills)>0)
                         <button class="nav-link my-1" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">Editar Habilidades</button>
+                        @endif
                     </div>
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-new" role="tabpanel" aria-labelledby="v-pills-new-tab">
                             @include('admin.includes.skills-create')
                         </div>
+
                         <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
                             @include('admin.includes.skills-edit')
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
+                <div class="d-flex align-items-start">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active my-1" id="v-pills-new-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new" type="button" role="tab" aria-controls="v-pills-new" aria-selected="true">Agregar Red Social</button>
+                        <button class="nav-link my-1" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">Editar Redes Sociales</button>
+                    </div>
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-new" role="tabpanel" aria-labelledby="v-pills-new-tab">
+                            @include('admin.includes.networks-create')
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
+                            @include('admin.includes.networks-edit')
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">...</div>
             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
         </div>
     </div>

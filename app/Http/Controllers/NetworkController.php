@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Skill;
-use App\Http\Requests\SkillRequest;
+use App\Models\Network;
+use Illuminate\Http\Request;
 
-class SkillController extends Controller
+class NetworkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,23 +30,24 @@ class SkillController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\SkillRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SkillRequest $request)
+    public function store(Request $request)
     {
         $data = $request->all();
 
-        $skill = Skill::create([
-            'name' => $data['skill-name'],
+        $network = Network::create([
+            'name' => $data['name'],
             'user_id' => intval($data['user_id']),
-            'percent' => $data['percent'],
-            'type' => 'technical'
+            'url' => $data['url'],
+
         ]);
 
-        $status = $skill->save();
+        $status = $network->save();
 
         return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('action', 'creada');
+    
     }
 
     /**
@@ -74,16 +75,16 @@ class SkillController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\SkillRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    public function update(SkillRequest $request, Skill $skill)
+    public function update(Request $request, Network $network)
     {
-        $status = $skill->update($request->all());
+        $status = $network->update($request->all());
 
-        return redirect()->to('user/' . $skill->user_id . '/edit')->with('status', $status)->with('action', 'modificada');
+        return redirect()->to('user/' . $network->user_id . '/edit')->with('status', $status)->with('action', 'modificada');
+    
     }
 
     /**
@@ -92,14 +93,14 @@ class SkillController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    public function destroy(Skill $skill)
+    public function destroy(Network $network)
     {
-        $id = $skill->user_id;
+        $id = $network->user_id;
 
-        $skill = Skill::find($skill->id);
-        $status = $skill->delete();
+        $network = Network::find($network->id);
+        $status = $network->delete();
 
         return redirect()->to('user/' . $id . '/edit')->with('status', $status)->with('action', 'eliminada');
+
     }
 }
