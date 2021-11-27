@@ -81,7 +81,18 @@ class NetworkController extends Controller
      */
     public function update(Request $request, Network $network)
     {
-        $status = $network->update($request->all());
+
+        $user_id = $request->user_id;
+        $url = $request->url;
+
+        if($request->active){
+            $active = true;
+        } else {
+            $active = false;
+        }
+
+        $status = $network->users()->sync([$user_id => ['url' => $url, 'active' => $active]]);
+        // $status = $network->update($request->all());
 
         return redirect()->to('user/' . $network->user_id . '/edit')->with('status', $status)->with('action', 'modificada');
     

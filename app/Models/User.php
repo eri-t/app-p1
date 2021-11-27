@@ -39,7 +39,7 @@ class User extends Authenticatable
         'job_title',
         'image',
         'phone_number',
-        'address'
+        'address',
     ];
 
     /**

@@ -54,23 +54,14 @@ class DatabaseSeeder extends Seeder
                     $user->assignRole('client');
                 }
 
-
-                /*
-                $networks->each(function($network) // foreach($posts as $post) { }
-                {
-                    $networkId = $network->id;
-                    $user->networks()->attach($networkId);
-                });
-*/
                 $networks = Network::all();
                 foreach($networks as $network) { 
                     $networkId = $network->id;
                     $user->networks()->attach($networkId);
                 };
             }
-          // $networkId = $request->network_id;
-          // $user->networks()->attach($networkId);
         );
+        
         Skill::factory(40)->create();
         Education::factory(15)->create();
         Work::factory(15)->create();

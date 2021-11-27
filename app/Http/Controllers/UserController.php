@@ -21,7 +21,7 @@ class UserController extends Controller
         $user = Auth::user();
         return view('user.index', compact('user'));
         */
-        $users = User::with('roles','education', 'skills', 'works', 'activities', 'projects', 'posts', 'projects.testimonials', 'works.responsibilities')->latest()->get();
+        $users = User::with('roles','education', 'skills', 'works', 'activities', 'projects', 'posts', 'networks', 'projects.testimonials','works.responsibilities')->latest()->get();
         return view('admin.users.index', compact('users'));
     }
 
@@ -131,4 +131,18 @@ class UserController extends Controller
 
         return view('welcome');
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function my_portfolio()
+    {
+        $user = User::find(Auth::user()->id)->with('roles', 'education', 'skills', 'works', 'activities', 'projects', 'posts', 'networks', 'projects.testimonials','works.responsibilities')->first();
+        return view('my-portfolio', compact('user'));
+    }
+    
 }

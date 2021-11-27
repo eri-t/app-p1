@@ -75,14 +75,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             Route::resource('network', NetworkController::class)->only([
                 'create','update','edit','store','destroy'
             ]);
-
-        Route::get('my-portfolio', function () {
-
+        /*
+        Route::get('my-portfolio', function () { 
             return view('my-portfolio');
         })->name('my-portfolio');
-    });
+        */
+         Route::get('my-portfolio', UserController::class . '@my_portfolio')->name('my-portfolio');
 
     
+    });
+
 });
 
 // Acceder al portfolio sólo si se está logueado:
