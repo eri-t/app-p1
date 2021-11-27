@@ -6,7 +6,7 @@
 
     <div class="col-12">
         <div class="row">
-            <h1>Bienvenidos al Dashboard</h1>
+            <h1>Bienvenido al Admin Dashboard</h1>
         </div>
 
     </div>

@@ -41,12 +41,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('admin.dashboard');
 })->name('dashboard');
 */
+Route::get('logout-user', UserController::class . '@logout_user')->name('logout-user');
+
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
 
-        Route::get('admin/dashboard', function () {
+        Route::get('/dashboard', function () {
             return view('admin.dashboard');
-        })->name('admin.dashboard');
+        })->name('dashboard');
 
         Route::resource('user', UserController::class);
 
@@ -55,30 +57,32 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('network', NetworkController::class);
     });
 
-Route::group(['middleware' => ['role:client']], function () {
+    Route::group(['middleware' => ['role:client']], function () {
+    /*
+            Route::get('dashboard', function () {
 
-    Route::get('dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
+    */
+            Route::resource('user', UserController::class)->only([
+                'create','update','edit','store','destroy'
+            ]);
 
-        return view('dashboard');
-    })->name('dashboard');
+            Route::resource('skill', SkillController::class)->only([
+                'create','update','edit','store','destroy'
+            ]);
 
-        Route::resource('user', UserController::class)->only([
-            'create','update','store','destroy'
-        ]);
+            Route::resource('network', NetworkController::class)->only([
+                'create','update','edit','store','destroy'
+            ]);
 
-        Route::resource('skill', SkillController::class)->only([
-            'create','update','store','destroy'
-        ]);
+        Route::get('my-portfolio', function () {
 
-        Route::resource('network', NetworkController::class)->only([
-            'create','update','store','destroy'
-        ]);
+            return view('my-portfolio');
+        })->name('my-portfolio');
+    });
 
-    Route::get('my-portfolio', function () {
-
-        return view('my-portfolio');
-    })->name('my-portfolio');
-});
+    
 });
 
 // Acceder al portfolio sólo si se está logueado:

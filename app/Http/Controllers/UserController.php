@@ -119,4 +119,16 @@ class UserController extends Controller
 
         return redirect()->to('user');
     }
+
+    /**
+     * Logout.
+     *
+     *
+     */
+    public function logout_user()
+    {
+        Auth::logout();
+
+        return view('welcome');
+    }
 }

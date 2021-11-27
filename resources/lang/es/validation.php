@@ -173,7 +173,7 @@ return [
         'phone_number' => "'teléfono'",
         'address' => "'dirección'",
         'file' => "'imagen de perfil'",
-        'skill.name' => "'nombre de la habilidad'",
-        'skill.percent' => "'porcentaje de la habilidad'",
+        'skill-name' => "'nombre de la habilidad'",
+        'percent' => "'porcentaje de la habilidad'",
     ],
 ];

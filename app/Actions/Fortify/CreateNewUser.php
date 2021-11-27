@@ -34,7 +34,11 @@ class CreateNewUser implements CreatesNewUsers
             'password' => Hash::make($input['password']),
         ]);
 
-        $user->assignRole('client');
+        if ($user->id == 1) {
+            $user->assignRole('admin');
+        } else {
+            $user->assignRole('client');
+        }
 
         $slug = Str::of($user->name)->slug('-');
 

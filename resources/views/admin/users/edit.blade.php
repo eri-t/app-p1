@@ -17,6 +17,22 @@
             @endif
         </div>
 
+        <div class="col-12 pt-2">
+            @error('skill-name')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="mb-0">{{ $message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @enderror
+
+            @error('percent')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="mb-0">{{ $message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @enderror
+        </div>
+
         <div class="col-12">
             <form action="{{ route('user.update', $user) }}" enctype="multipart/form-data" method="POST">
 
@@ -107,8 +123,6 @@
 
 <section class="container fluid p-4">
 
-
-
     <div class="col-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -131,7 +145,7 @@
                         <button class="nav-link my-1" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">Editar Habilidades</button>
                         @endif
                     </div>
-                    <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-content flex-grow-1" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-new" role="tabpanel" aria-labelledby="v-pills-new-tab">
                             @include('admin.includes.skills-create')
                         </div>
@@ -149,7 +163,7 @@
                         <button class="nav-link active my-1" id="v-pills-new-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new" type="button" role="tab" aria-controls="v-pills-new" aria-selected="true">Agregar Red Social</button>
                         <button class="nav-link my-1" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">Editar Redes Sociales</button>
                     </div>
-                    <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-content flex-grow-1" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-new" role="tabpanel" aria-labelledby="v-pills-new-tab">
                             @include('admin.includes.networks-create')
                         </div>

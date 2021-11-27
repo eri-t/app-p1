@@ -22,7 +22,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(5)->create();
+        // User::factory(5)->create();
+        User::factory(5)->create()->each(
+            function ($user) {
+                $user->assignRole('client');
+            }
+        );
         Skill::factory(40)->create();
         Education::factory(15)->create();
         Work::factory(15)->create();

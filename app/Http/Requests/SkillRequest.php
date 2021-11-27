@@ -24,8 +24,8 @@ class SkillRequest extends FormRequest
     public function rules()
     {
         return [
-            'skill-name.*' => 'required | min:2 | max:64',
-            'percent.*' => 'required | numeric | min:0 | max:100',
+            'skill-name' => 'required | min:2 | max:64',
+            'percent' => 'required|numeric|between:0,100',
         ];
     }
 }
