@@ -19,7 +19,7 @@
             </div>
             <div class="row">
                 <div class="col-10 col-sm-11">
-                    <input id="percent" type="range" class="form-range" min="0" max="100" step="1" name="percent" placeholder="Porcentaje" onChange="
+                    <input id="percent" type="range" class="form-range" min="0" max="100" step="1" name="percent" onChange="
                             document.getElementById('rangeval').innerText=document.getElementById('percent').value" style="max-width:500px;">
                 </div>
                 <div class="col-2 col-sm-1 d-flex justify-content-end">

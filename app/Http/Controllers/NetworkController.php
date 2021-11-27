@@ -38,10 +38,10 @@ class NetworkController extends Controller
         $data = $request->all();
 
         $network = Network::create([
-            'name' => $data['name'],
-            'user_id' => intval($data['user_id']),
+            'name' => $data['network-name'],
+            // 'user_id' => intval($data['user_id']),
             'url' => $data['url'],
-
+            // 'user_name' => $data['user_name'],
         ]);
 
         $status = $network->save();
@@ -95,12 +95,6 @@ class NetworkController extends Controller
      */
     public function destroy(Network $network)
     {
-        $id = $network->user_id;
-
-        $network = Network::find($network->id);
-        $status = $network->delete();
-
-        return redirect()->to('user/' . $id . '/edit')->with('status', $status)->with('action', 'eliminada');
-
+        //
     }
 }

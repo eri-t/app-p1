@@ -2,11 +2,11 @@
 
     <div class="row mt-3">
         <div class="col-sm-auto">
-            <label for="name" class="form-label">
+            <label for="network-name" class="form-label">
                 Nueva Red Social
             </label>
 
-            <input id="name" type="text" name="name" class="form-control" placeholder="Nueva Red Social">
+            <input id="network-name" type="text" name="network-name" class="form-control" placeholder="Nueva Red Social">
         </div>
 
         <div class="col-sm-auto">

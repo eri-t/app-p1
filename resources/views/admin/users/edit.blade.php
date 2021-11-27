@@ -160,14 +160,13 @@
             <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
                 <div class="d-flex align-items-start">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link active my-1" id="v-pills-new-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new" type="button" role="tab" aria-controls="v-pills-new" aria-selected="true">Agregar Red Social</button>
-                        <button class="nav-link my-1" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">Editar Redes Sociales</button>
+
+                        <button class="nav-link active my-1" id="v-pills-edit-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit" type="button" role="tab" aria-controls="v-pills-edit" aria-selected="false">Editar Redes Sociales</button>
+
                     </div>
                     <div class="tab-content flex-grow-1" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-new" role="tabpanel" aria-labelledby="v-pills-new-tab">
-                            @include('admin.includes.networks-create')
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
+<!-- TODO: Delete networks-create.blade.php file -->
+                        <div class="tab-pane fade show active" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
                             @include('admin.includes.networks-edit')
                         </div>
                     </div>

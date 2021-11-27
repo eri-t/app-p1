@@ -12,6 +12,8 @@ use App\Models\Project;
 use App\Models\Responsibility;
 use App\Models\Testimonial;
 use App\Models\Post;
+use App\Models\Network;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,11 +24,52 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        
+        DB::table('networks')->insert([
+            [
+                'name' => 'facebook',
+                'url' => 'facebook.com',
+            ],
+            [
+                'name' => 'twitter',
+                'url' => 'twitter.com',
+            ],
+            [
+                'name' => 'github',
+                'url' => 'github.com',
+            ],
+            [
+                'name' => 'dribble',
+                'url' => 'dribble.com',
+            ]
+        ]);
+
         // User::factory(5)->create();
+        
         User::factory(5)->create()->each(
             function ($user) {
-                $user->assignRole('client');
+                if ($user->id == 1) {
+                    $user->assignRole('admin');
+                } else {
+                    $user->assignRole('client');
+                }
+
+
+                /*
+                $networks->each(function($network) // foreach($posts as $post) { }
+                {
+                    $networkId = $network->id;
+                    $user->networks()->attach($networkId);
+                });
+*/
+                $networks = Network::all();
+                foreach($networks as $network) { 
+                    $networkId = $network->id;
+                    $user->networks()->attach($networkId);
+                };
             }
+          // $networkId = $request->network_id;
+          // $user->networks()->attach($networkId);
         );
         Skill::factory(40)->create();
         Education::factory(15)->create();

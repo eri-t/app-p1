@@ -17,12 +17,17 @@ class Network extends Model
      */
     protected $fillable = [
         'name',
-        'user_id',
         'url',
     ];
 
-    public function user()
+    public function users()
     {
-        $this->belongsTo(User::class);
+        //return $this->belongsToMany(RelatedModel, pivot_table_name, foreign_key_of_current_model_in_pivot_table, foreign_key_of_other_model_in_pivot_table);
+        return $this->belongsToMany(
+            User::class,
+            'networks_users',
+            'network_id',
+            'user_id'
+        );
     }
 }
