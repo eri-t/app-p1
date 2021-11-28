@@ -110,7 +110,7 @@ class User extends Authenticatable
             'networks_users',
             'user_id',
             'network_id'
-        );
+        )-> withPivot('active', 'url');
     }
 
     public function getGetImageAttribute($key)

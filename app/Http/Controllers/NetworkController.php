@@ -35,19 +35,7 @@ class NetworkController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $network = Network::create([
-            'name' => $data['network-name'],
-            // 'user_id' => intval($data['user_id']),
-            'url' => $data['url'],
-            // 'user_name' => $data['user_name'],
-        ]);
-
-        $status = $network->save();
-
-        return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('action', 'creada');
-    
+        //
     }
 
     /**
@@ -81,7 +69,6 @@ class NetworkController extends Controller
      */
     public function update(Request $request, Network $network)
     {
-
         $user_id = $request->user_id;
         $url = $request->url;
 
@@ -92,10 +79,8 @@ class NetworkController extends Controller
         }
 
         $status = $network->users()->sync([$user_id => ['url' => $url, 'active' => $active]]);
-        // $status = $network->update($request->all());
 
-        return redirect()->to('user/' . $network->user_id . '/edit')->with('status', $status)->with('action', 'modificada');
-    
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'red social');
     }
 
     /**

@@ -6,12 +6,12 @@
         <div class="col-12 pt-2">
             @if (session('status') && session('action'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <p class="mb-0">La habilidad ha sido {{ session('action') }} exitosamente.</p>
+                <p class="mb-0">La {{ session('field') }} ha sido {{ session('action') }} exitosamente.</p>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @elseif(session('action'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <p class="mb-0">La habilidad no pudo ser {{ session('action') }}. Por favor, intente nuevamente más tarde.</p>
+                <p class="mb-0">La {{ session('field') }} no pudo ser {{ session('action') }}. Por favor, intente nuevamente más tarde.</p>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
@@ -165,7 +165,7 @@
 
                     </div>
                     <div class="tab-content flex-grow-1" id="v-pills-tabContent">
-<!-- TODO: Delete networks-create.blade.php file -->
+                        <!-- TODO: Delete networks-create.blade.php file -->
                         <div class="tab-pane fade show active" id="v-pills-edit" role="tabpanel" aria-labelledby="v-pills-edit-tab">
                             @include('admin.includes.networks-edit')
                         </div>
