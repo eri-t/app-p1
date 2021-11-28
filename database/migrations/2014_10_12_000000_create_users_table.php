@@ -17,18 +17,20 @@ class CreateUsersTable extends Migration
             $table->id();
 
             $table->string('name');
+            $table->string('email')->unique();
             $table->string('slug')->unique()->nullable();
+            
+            // Home Section
             $table->string('image')->nullable();
             $table->string('job_title')->nullable();
-            $table->string('email')->unique();
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
+            $table->string('introduction')->nullable();
+            
+            // About Section
+            $table->string('about_title')->nullable();
             $table->text('excerpt')->nullable();
-
-            $table->string('facebook_slug')->nullable();
-            $table->string('twitter_slug')->nullable();
-            $table->string('github_slug')->nullable();
-            $table->string('dribble_slug')->nullable();
+            $table->string('about_subtitle')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

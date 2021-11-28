@@ -82,7 +82,6 @@ class SkillController extends Controller
     public function update(SkillRequest $request, Skill $skill)
     {
         $status = $skill->update($request->all());
-
         return redirect()->to('user/' . $skill->user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'habilidad');
     }
 

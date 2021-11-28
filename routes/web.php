@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\ActivityController;
 use Spatie\Permission\Models\Role;
 
 /*
@@ -55,6 +56,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('skill', SkillController::class);
 
         Route::resource('network', NetworkController::class);
+
+        Route::resource('activity', ActivityController::class);
     });
 
     Route::group(['middleware' => ['role:client']], function () {
@@ -73,8 +76,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             ]);
 
             Route::resource('network', NetworkController::class)->only([
-                'create','update','edit','store','destroy'
+                'update','edit','store','destroy'
             ]);
+
+            Route::resource('activity', ActivityController::class)->only([
+            'create', 'update', 'edit', 'store', 'destroy'
+        ]);
         /*
         Route::get('my-portfolio', function () { 
             return view('my-portfolio');
@@ -120,8 +127,12 @@ Route::get(
     }
 )->name('portfolio/{slug}');
 
+/*
 Route::resource('user', UserController::class);
 
 Route::resource('skill', SkillController::class);
 
 Route::resource('network', NetworkController::class);
+
+Route::resource('activity', ActivityController::class);
+*/

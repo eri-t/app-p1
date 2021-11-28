@@ -39,8 +39,8 @@ class DatabaseSeeder extends Seeder
                 'url' => 'github.com',
             ],
             [
-                'name' => 'dribble',
-                'url' => 'dribble.com',
+                'name' => 'dribbble',
+                'url' => 'dribbble.com',
             ]
         ]);
 

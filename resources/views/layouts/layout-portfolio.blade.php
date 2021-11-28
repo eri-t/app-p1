@@ -20,21 +20,31 @@
                         </div>
 
                         <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">{{ $user->name }}</h2>
+
+                        @if($user->job_title)
                         <h4 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">{{ ucfirst($user->job_title) }}</h4>
+                        @endif
 
                         <ul>
                             <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s"><i class="fa fa-envelope"></i><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></li>
+                            @if($user->phone_number)
                             <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s"><i class="fa fa-phone"></i><a href="callto:{{ $user->phone_number }}">{{ $user->phone_number }}</a></li>
+                            @endif
+                            @if($user->address)
                             <li class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.6s"><i class="fa fa-map-marker"></i>
                                 <address>{{ $user->address }}</address>
                             </li>
+                            @endif
                         </ul>
 
                         <ul class="social-icon wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.7s">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-github"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            @foreach ($user->networks as $network)
+                            @if ($network->pivot->active && $network->pivot->url)
+
+                            <li><a href="https://{{$network->url}}/{{$network->pivot->url}}" target="_blank"><i class="fa fa-{{ $network->name }}"></i></a></li>
+
+                            @endif
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -69,10 +79,27 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <div class="mh-about-inner">
-                    <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">About Me</h2>
-                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Hello, I’m {{ $user->name }}, {{ $user->job_title }}.
+
+                    <h2 class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.1s">
+                        @if($user->about_title)
+                        <span>{{ $user->about_title }}</span>
+                        @else
+                        <span>About Me</span>
+                        @endif
+                    </h2>
+
+                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Hello, I’m {{ $user->name }}
+                        @if($user->job_title)
+                        <span>, {{ $user->job_title }}</span>
+                        @endif
+                        .
+                    </p>
+                    @if($user->excerpt)
+                    <p>
                         {{ $user->excerpt }}
                     </p>
+                    @endif
+
                     <div class="mh-about-tag wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
                         <ul>
                             @foreach ($user->skills as $skill)
@@ -98,7 +125,13 @@
     <div class="container">
         <div class="row section-separator">
             <div class="col-sm-12 text-center section-title wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">
-                <h2>What I do</h2>
+                <h2>
+                    @if($user->about_subtitle)
+                    <span>{{ $user->about_subtitle }}</span>
+                    @else
+                    <span>What I do</span>
+                    @endif
+                </h2>
             </div>
 
             @foreach ($user->activities as $activity)
@@ -151,14 +184,14 @@
                                             <div class="mh-testimonial mh-project-testimonial wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.9s">
 
                                                 @if (count($user->projects[$i]->testimonials)>2)
-                                                    <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
-                                                    @for ($j = 0; $j < 3; $j++) <blockquote>
-                                                        <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
-                                                        <cite>- {{ $user->projects[$i]->testimonials[$j]->name }}</cite>
-                                                        </blockquote>
+                                                <!-- Limitar a 3 elementos para el correcto funcionamiento del carousel -->
+                                                @for ($j = 0; $j < 3; $j++) <blockquote>
+                                                    <q>{{ $user->projects[$i]->testimonials[$j]->comment }}</q>
+                                                    <cite>- {{ $user->projects[$i]->testimonials[$j]->name }}</cite>
+                                                    </blockquote>
 
                                                     @endfor
-                                                @endif
+                                                    @endif
 
                                             </div>
                                         </div>

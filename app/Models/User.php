@@ -40,6 +40,10 @@ class User extends Authenticatable
         'image',
         'phone_number',
         'address',
+        'introduction',
+        'about_title',
+        'excerpt',
+        'about_subtitle',
     ];
 
     /**
