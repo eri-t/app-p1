@@ -17,7 +17,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        /*
+
+       // dd(Auth::user());
+        
+       /*
         $user = Auth::user();
         return view('user.index', compact('user'));
         */
@@ -67,6 +70,16 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('admin.users.edit', compact('user'));
+        /*
+
+        if (Auth::user()->hasRole('client')) {
+            if(Auth::user()->id === $user->id)){
+
+            // actions
+            
+            }
+        }
+        */
     }
 
     /**
@@ -79,6 +92,12 @@ class UserController extends Controller
     // public function update(Request $request, $id)
     public function update(UserRequest $request, User $user)
     {
+        /*
+        if (!Auth::user()->hasRole('admin') || Auth::user() != $user ) {
+            return route('dashboard');
+        }
+        */
+
         // $user = User::find($id);
 /* (pasado a UserRequest)
         $request->validate([

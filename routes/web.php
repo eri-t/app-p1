@@ -45,13 +45,26 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('logout-user', UserController::class . '@logout_user')->name('logout-user');
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+    Route::group(['middleware' => ['role:admin|client']], function () {
+        Route::resource('user', UserController::class)->except([
+            'index'
+        ]);
+    });
+
     Route::group(['middleware' => ['role:admin']], function () {
 
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
         })->name('dashboard');
 
-        Route::resource('user', UserController::class);
+        Route::resource('users', UserController::class)->only([
+            'index'
+        ]);
+
+        //Route::resource('user', UserController::class)->except([
+        //    'show'
+        //]);
 
         Route::resource('skill', SkillController::class);
 
@@ -67,20 +80,20 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
                 return view('dashboard');
             })->name('dashboard');
     */
-            Route::resource('user', UserController::class)->only([
-                'create','update','edit','store','destroy'
+            //Route::resource('user', UserController::class)->except([
+            //    'index'
+            //]);
+
+            Route::resource('skill', SkillController::class)->except([
+                'index'
             ]);
 
-            Route::resource('skill', SkillController::class)->only([
-                'create','update','edit','store','destroy'
+            Route::resource('network', NetworkController::class)->except([
+                'index'
             ]);
 
-            Route::resource('network', NetworkController::class)->only([
-                'update','edit','store','destroy'
-            ]);
-
-            Route::resource('activity', ActivityController::class)->only([
-            'create', 'update', 'edit', 'store', 'destroy'
+            Route::resource('activity', ActivityController::class)->except([
+                'index'
         ]);
         /*
         Route::get('my-portfolio', function () { 
@@ -91,6 +104,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     
     });
+
+ 
 
 });
 
