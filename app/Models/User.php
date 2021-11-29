@@ -44,6 +44,7 @@ class User extends Authenticatable
         'about_title',
         'excerpt',
         'about_subtitle',
+        'about_img'
     ];
 
     /**
@@ -121,6 +122,13 @@ class User extends Authenticatable
     {
         if ($this->image) {
             return url("storage/$this->image");
+        }
+    }
+
+    public function getGetAboutImgAttribute($key)
+    {
+        if ($this->about_img) {
+            return url("storage/$this->about_img");
         }
     }
 

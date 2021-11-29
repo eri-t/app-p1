@@ -74,7 +74,11 @@
         <div class="row section-separator">
             <div class="col-sm-12 col-md-6">
                 <div class="mh-about-img shadow-2 wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">
+                    @if ($user->image)
+                    <img src="{{ $user->get_about_img }}" alt="About section image added by {{ $user->name }}" class="img-fluid">
+                    @else
                     <img src="{{ asset('assets/images/ab-img.png') }}" alt="" class="img-fluid">
+                    @endif
                 </div>
             </div>
             <div class="col-sm-12 col-md-6">

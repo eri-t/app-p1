@@ -97,6 +97,13 @@ class UserController extends Controller
         }
 
         $user->update($request->all());
+
+        if ($request->file('about_img')) {
+            Storage::disk('public')->delete($user->about_img);
+            $user->about_img = $request->file('about_img')->store('about', 'public');           
+            $user->save();            
+        }
+
         $id = $user->id;
         return redirect()->to('user/' . $id . '/edit');
     }
@@ -114,7 +121,9 @@ class UserController extends Controller
         if ($user->image) {
             Storage::disk('public')->delete($user->image);
         }
-
+        if ($user->about_img) {
+            Storage::disk('public')->delete($user->about_img);
+        }
         $user->delete();
 
         return redirect()->to('user');

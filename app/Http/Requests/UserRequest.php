@@ -33,6 +33,7 @@ class UserRequest extends FormRequest
             // 'phone_number' => 'required | numeric | min:5 | max:12',
             //    'file' => 'image | dimensions:min_width=100,min_height=200 | size:512',
             'file' => 'mimes:jpeg,png | dimensions:min_width=425,min_height=425 | max:512',
+            'about_img' => 'image | max:512',
         ];
     }
 }

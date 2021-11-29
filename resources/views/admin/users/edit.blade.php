@@ -121,7 +121,7 @@
                         </div>
                         <div class="col-md-4 pt-3">
                             <label for="file" class="form-label">
-                                Imagen de perfil <span class="small text-secondary fst-italic">(Tamaño mínimo: 425px de ancho y de alto)</span>
+                                Imagen de perfil <span class="small text-secondary fst-italic">(Tamaño mínimo sugerido: 425px de ancho y de alto)</span>
                             </label>
                             @if ($user->image)
                             <img class="img-fluid mb-1 rounded-circle" src="{{ $user->get_image }}" alt="{{ $user->name }}">
@@ -173,19 +173,18 @@
                             </div>
                         </div>
                         <div class="col-md-4 pt-3">
-                            <label for="file" class="form-label">
-                                Imagen de perfil <span class="small text-secondary fst-italic">(Tamaño mínimo: 425px de ancho y de alto)</span>
+                            <label for="about_img" class="form-label">
+                                Imagen de la sección <span class="small text-secondary fst-italic">(Tamaño sugerido: 1568px de ancho y 961px de alto)</span>
                             </label>
-                            @if ($user->image)
-                            <img class="img-fluid mb-1 rounded-circle" src="{{ $user->get_image }}" alt="{{ $user->name }}">
+                            @if ($user->about_img)
+                            <img class="img-fluid mb-1" src="{{ $user->get_about_img }}" alt="About section image added by {{ $user->name }}">
                             @else
-                            <img class="img-fluid mb-1" src="https://parcial1.test/assets/images/hero.png" alt="Default profile picture">
+                            <img class="img-fluid mb-1" src="https://parcial1.test/assets/images/ab-img.png" alt="Default image for About section">
                             @endif
-                            <input class="form-control" type="file" name="file" id="file">
-                            @error('file')
+                            <input class="form-control" type="file" name="about_img" id="about_img">
+                            @error('about_img')
                             <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                             @enderror
-
                         </div>
 
                     </div>
@@ -217,7 +216,7 @@
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="skills" role="tabpanel" aria-labelledby="skills-tab">
                 <div class="d-flex align-items-start">
-                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab-1" role="tablist" aria-orientation="vertical">
                         <button class="nav-link active my-1" id="v-pills-new-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new-1" type="button" role="tab" aria-controls="v-pills-new-1" aria-selected="true">Agregar Habilidad</button>
                         @if (count($user->skills)>0)
                         <button class="nav-link my-1" id="v-pills-edit-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit-1" type="button" role="tab" aria-controls="v-pills-edit-1" aria-selected="false">Editar Habilidades</button>
@@ -238,7 +237,7 @@
 
             <div class="tab-pane fade" id="social" role="tabpanel" aria-labelledby="social-tab">
                 <div class="d-flex align-items-start">
-                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab-2" role="tablist" aria-orientation="vertical">
 
                         <button class="nav-link active my-1" id="v-pills-edit-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit-2" type="button" role="tab" aria-controls="v-pills-edit-2" aria-selected="false">Editar Redes Sociales</button>
 
@@ -254,7 +253,7 @@
 
             <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-tab">
                 <div class="d-flex align-items-start">
-                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab-3" role="tablist" aria-orientation="vertical">
                         <button class="nav-link active my-1" id="v-pills-new-2-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new-2" type="button" role="tab" aria-controls="v-pills-new-2" aria-selected="true">Agregar Actividad</button>
                         @if (count($user->activities)>0)
                         <button class="nav-link my-1" id="v-pills-edit-3-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit-3" type="button" role="tab" aria-controls="v-pills-edit-3" aria-selected="false">Editar Actividades</button>
