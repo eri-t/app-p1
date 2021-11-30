@@ -95,12 +95,7 @@ class ActivityController extends Controller
                 return view('admin.users.403');
             }
         }
-/*
-        $request->validate([
-            'activity-title' => 'required | min:5 | max:64',
-            'activity-description' => 'required | min:5 | max:64',
-        ]);
-*/
+
         $data = $request->all();
 
         $status = $activity->update([
@@ -109,7 +104,6 @@ class ActivityController extends Controller
             'user_id' => $activity->user_id,
         ]);
 
-        // $status = $activity->update($request->all());
         return redirect()->to('user/' . $activity->user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'actividad');
     }
 

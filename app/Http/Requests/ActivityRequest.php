@@ -24,8 +24,8 @@ class ActivityRequest extends FormRequest
     public function rules()
     {
         return [
-            'activity-title' => 'required | min:5 | max:64',
-            'activity-description' => 'required | min:5 | max:64',
+            'activity-title' => 'required | min:2 | max:64',
+            'activity-description' => 'required | min:5 | max:300',
         ];
     }
 }

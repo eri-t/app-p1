@@ -92,17 +92,6 @@ class UserController extends Controller
             }
         }
 
-        // $user = User::find($id);
-/* (pasado a UserRequest)
-        $request->validate([
-            'name' => 'required | min:5 | max:64',
-            'job_title' => 'required | min:5 | max:64',
-            'address' => 'required | min:5 | max:64',
-            'phone_number' => 'required | numeric | min:5 | max:12',
-        //    'file' => 'image | dimensions:min_width=100,min_height=200 | size:512',
-            'file' => 'mimes:jpeg | dimensions:min_width=100,min_height=200 | size:512',
-        ]);
-*/
         if ($request->file('file')) {
             Storage::disk('public')->delete($user->image);
             $user->image = $request->file('file')->store('users', 'public');

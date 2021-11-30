@@ -1,4 +1,5 @@
 @foreach ($user->skills as $skill)
+@if ($skill->type == 'technical')
 <div class="row mt-4">
     <div class="col-sm-auto flex-grow-1" style="max-width:950px;">
         <!-- TODO: Add row with column titles -->
@@ -17,20 +18,9 @@
                             <label for="skill-percent-{{ $skill->id }}" class="visually-hidden">
                                 Porcentaje
                             </label>
-                            <input 
-                                id="skill-percent-{{ $skill->id }}" 
-                                type="range" 
-                                class="form-range" 
-                                min="0" 
-                                max="100" 
-                                step="1" 
-                                name="percent" 
-                                value="{{ old('percent', $skill->percent) }}" 
-                                onChange="
+                            <input id="skill-percent-{{ $skill->id }}" type="range" class="form-range" min="0" max="100" step="1" name="percent" value="{{ old('percent', $skill->percent) }}" onChange="
                                     let id = '{{ $skill->id }}';
-                                    document.getElementById('rangeval-' + id).innerText=document.getElementById('skill-percent-' + id).value" 
-                                    style="max-width:500px;"
-                                    >
+                                    document.getElementById('rangeval-' + id).innerText=document.getElementById('skill-percent-' + id).value" style="max-width:500px;">
                         </div>
                         <div class="col-2 col-sm-1 d-flex justify-content-end">
                             <span id="rangeval-{{ $skill->id }}">
@@ -58,4 +48,5 @@
     </div>
 
 </div>
+@endif
 @endforeach

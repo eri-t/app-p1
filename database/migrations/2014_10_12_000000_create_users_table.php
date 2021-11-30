@@ -33,6 +33,10 @@ class CreateUsersTable extends Migration
             $table->string('about_subtitle')->nullable();
             $table->string('about_img')->nullable();
 
+            // Skills Section
+            $table->string('skills_title_1')->nullable();
+            $table->string('skills_title_2')->nullable();
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

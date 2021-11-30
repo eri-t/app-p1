@@ -144,9 +144,10 @@
                             @else
                             <img class="img-fluid mb-1" src="https://parcial1.test/assets/images/hero.png" alt="Default profile picture">
                             @endif
-                            <input class="form-control" type="file" name="file" id="file">
+                            <input class="form-control" type="file" name="file" id="file" accept=".jpg,.png">
                             @error('file')
-                            <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
+                            <div class=" bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}
+                            </div>
                             @enderror
 
                         </div>
@@ -197,7 +198,7 @@
                             @else
                             <img class="img-fluid mb-1" src="https://parcial1.test/assets/images/ab-img.png" alt="Default image for About section">
                             @endif
-                            <input class="form-control" type="file" name="about_img" id="about_img">
+                            <input class="form-control" type="file" name="about_img" id="about_img" accept=".jpg,.png">
                             @error('about_img')
                             <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
                             @enderror
@@ -206,20 +207,48 @@
                     </div>
                 </fieldset>
 
+                <fieldset>
+                    <legend class="mt-5">Skills</legend>
+                    <div class="row mt-3">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-lg-6 pt-3">
+                                    <label for="skills_title_1" class="form-label">
+                                        Título de la primera sección
+                                    </label>
+                                    <input id="skills_title_1" type="text" name="skills_title_1" class="form-control" value="{{ old('skills_title_1', $user->skills_title_1) }}" placeholder="About Me">
+                                    @error('skills_title_1')
+                                    <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-lg-6 pt-3">
+                                    <label for="skills_title_2" class="form-label">
+                                        Título de la segunda sección
+                                    </label>
+                                    <input id="skills_title_2" type="text" name="skills_title_2" class="form-control" value="{{ old('skills_title_2', $user->skills_title_2) }}" placeholder="Technical Skills">
+                                    @error('skills_title_2')
+                                    <div class="bg-danger w-100 px-3 py-2 text-white m-2 rounded-3 mx-0">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
                 @csrf
                 @method('PUT')
-                <button type="submit" class="btn btn-primary my-3">Guardar Cambios</button>
+                <button type="submit" class="btn btn-success my-3">Guardar Cambios</button>
             </form>
         </div>
     </div>
 </div>
 
-<section class="container fluid p-4">
+<section class="container fluid p-4 mt-5">
 
     <div class="col-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills" type="button" role="tab" aria-controls="skills" aria-selected="true">Habilidades</button>
+                <button class="nav-link active" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills" type="button" role="tab" aria-controls="skills" aria-selected="true">Habilidades Técnicas</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" type="button" role="tab" aria-controls="social" aria-selected="false">Redes Sociales</button>
@@ -259,7 +288,6 @@
 
                     </div>
                     <div class="tab-content flex-grow-1" id="v-pills-tabContent">
-                        <!-- TODO: Delete networks-create.blade.php file -->
                         <div class="tab-pane fade show active" id="v-pills-edit-2" role="tabpanel" aria-labelledby="v-pills-edit-2-tab">
                             @include('admin.includes.networks-edit')
                         </div>

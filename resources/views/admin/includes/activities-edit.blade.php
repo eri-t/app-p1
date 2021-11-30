@@ -15,7 +15,7 @@
                     <label for="activity-description-{{$activity->id}}" class="visually-hidden">
                         Descripción
                     </label>
-                    <textarea id="activity-description-{{$activity->id}}" type="text" class="form-control" name="activity-description" rows="3" placeholder="Descripción">{{ $activity->description }}</textarea>
+                    <textarea id="activity-description-{{$activity->id}}" type="text" class="form-control" name="activity-description" rows="3" placeholder="Descripción" maxlength="300">{{ $activity->description }}</textarea>
                 </div>
 
                 <div class="col-sm-auto d-flex align-items-end">

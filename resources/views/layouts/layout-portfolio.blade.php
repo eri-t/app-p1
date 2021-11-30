@@ -229,12 +229,18 @@
         <div class="container">
             <div class="row section-separator">
                 <div class="section-title text-center col-sm-12">
-                    <!--<h2>Skills</h2>-->
+
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-skills-inner">
                         <div class="mh-professional-skill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.3s">
+
+                            @if ($user->skills_title_1)
+                            <h3>{{ $user->skills_title_1 }}</h3>
+                            @else
                             <h3>Technical Skills</h3>
+                            @endif
+
                             <div class="each-skills">
                                 @foreach ($user->skills as $skill)
                                 @if ($skill->type == 'technical')
@@ -257,7 +263,13 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div class="mh-professional-skills wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.5s">
+
+                        @if ($user->skills_title_2)
+                        <h3>{{ $user->skills_title_2 }}</h3>
+                        @else
                         <h3>Professional Skills</h3>
+                        @endif
+
                         <ul class="mh-professional-progress">
                             @foreach ($user->skills as $skill)
                             @if ($skill->type == 'professional')

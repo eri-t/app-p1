@@ -44,7 +44,9 @@ class User extends Authenticatable
         'about_title',
         'excerpt',
         'about_subtitle',
-        'about_img'
+        'about_img',
+        'skills_title_1',
+        'skills_title_2'
     ];
 
     /**

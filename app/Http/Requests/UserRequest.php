@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
             'address' => 'min:5 | max:64 | nullable',
             'phone_number' => 'regex:/[0-9]{8}/ | nullable',
             'file' => 'mimes:jpeg,png | dimensions:min_width=425,min_height=425 | max:512',
-            'about_img' => 'image | max:512',
+            'about_img' => 'mimes:jpeg,png | max:512',
         ];
     }
 }
