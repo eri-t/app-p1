@@ -18,6 +18,7 @@
         </div>
 
         <div class="col-12 pt-2">
+            <!-- Skills section errors -->
             @error('skill-name')
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <p class="mb-0">{{ $message }}</p>
@@ -26,6 +27,21 @@
             @enderror
 
             @error('percent')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="mb-0">{{ $message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @enderror
+
+            <!-- Activities section errors -->
+            @error('activity-title')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p class="mb-0">{{ $message }}</p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @enderror
+
+            @error('activity-description')
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <p class="mb-0">{{ $message }}</p>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

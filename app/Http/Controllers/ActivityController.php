@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Activity;
 use Illuminate\Http\Request;
+use App\Http\Requests\ActivityRequest;
 
 class ActivityController extends Controller
 {
@@ -34,13 +35,13 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ActivityRequest $request)
     {
         $data = $request->all();
 
         // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if (Auth::user()->id !== $data['user_id']) {
+            if (Auth::user()->id != $data['user_id']) {
                 return view('admin.users.403');
             }
         }
@@ -86,15 +87,20 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity $activity)
+    public function update(ActivityRequest $request, Activity $activity)
     {
         // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if (Auth::user()->id !== $activity->user_id) {
+            if (Auth::user()->id != $activity->user_id) {
                 return view('admin.users.403');
             }
         }
-
+/*
+        $request->validate([
+            'activity-title' => 'required | min:5 | max:64',
+            'activity-description' => 'required | min:5 | max:64',
+        ]);
+*/
         $data = $request->all();
 
         $status = $activity->update([
@@ -119,7 +125,7 @@ class ActivityController extends Controller
 
         // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if (Auth::user()->id !== $user_id) {
+            if (Auth::user()->id != $user_id) {
                 return view('admin.users.403');
             }
         }

@@ -1,5 +1,5 @@
 @foreach ($user->activities as $activity)
-<div class="row mt-4">
+<div class="row mt-4 pb-3 border-bottom">
     <div class="col-sm-auto flex-grow-1" style="max-width:1200px;">
         <!-- TODO: Add row with column titles -->
         <form action="{{ route('activity.update', $activity) }}" method="POST">

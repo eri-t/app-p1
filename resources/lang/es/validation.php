@@ -175,5 +175,7 @@ return [
         'file' => "'imagen de perfil'",
         'skill-name' => "'nombre de la habilidad'",
         'percent' => "'porcentaje de la habilidad'",
+        'activity-title' => "'título de la actividad'",
+        'activity-description' => "'descripción de la actividad'",
     ],
 ];

@@ -87,7 +87,7 @@ class UserController extends Controller
     {
         // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if (Auth::user()->id !== $user->id) {
+            if (Auth::user()->id != $user->id) {
                 return view('admin.users.403');
             }
         }
@@ -136,7 +136,7 @@ class UserController extends Controller
 
         // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if (Auth::user()->id !== $id) {
+            if (Auth::user()->id != $id) {
                 return view('admin.users.403');
             }
         }

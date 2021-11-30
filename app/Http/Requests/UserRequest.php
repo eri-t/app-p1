@@ -26,12 +26,10 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required | min:5 | max:64',
             'job_title' => 'min:3 | max:64 | nullable',
-            'email' => 'required | email | unique:users',
-            'slug' => 'required | max:64 | unique:users',
+            'email' => 'required | email | unique:users,email,' . $this->user['id'],
+            'slug' => 'required | max:64 | unique:users,slug,' . $this->user['id'],
             'address' => 'min:5 | max:64 | nullable',
             'phone_number' => 'regex:/[0-9]{8}/ | nullable',
-            // 'phone_number' => 'required | numeric | min:5 | max:12',
-            //    'file' => 'image | dimensions:min_width=100,min_height=200 | size:512',
             'file' => 'mimes:jpeg,png | dimensions:min_width=425,min_height=425 | max:512',
             'about_img' => 'image | max:512',
         ];

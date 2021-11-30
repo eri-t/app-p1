@@ -150,6 +150,10 @@
             </div>
             @endforeach
 
+            @if(!count($user->activities))
+            <p class="text-center w-100">Coming soon...</p>
+            @endif
+
         </div>
     </div>
 </section>
@@ -205,6 +209,10 @@
                             @endisset
                             @endfor
                     </div>
+
+                    @if(!count($user->projects))
+                    <p class="text-center w-100">Coming soon...</p>
+                    @endif
                 </div>
             </div> <!-- End: .row -->
         </div>
@@ -288,6 +296,10 @@
                                 <p>{{ $item->description }}</p>
                             </div>
                             @endforeach
+
+                            @if(!count($user->education))
+                            <p class="text-center w-100">Coming soon...</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -308,6 +320,10 @@
                                 </ul>
                             </div>
                             @endforeach
+
+                            @if(!count($user->works))
+                            <p class="text-center w-100">Coming soon...</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -597,6 +613,9 @@
                 </div>
                 @endforeach
 
+                @if(!count($user->posts))
+                <p class="text-center w-100">Coming soon...</p>
+                @endif
             </div>
         </div>
     </div>

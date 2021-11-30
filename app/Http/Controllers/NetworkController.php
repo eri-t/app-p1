@@ -74,7 +74,7 @@ class NetworkController extends Controller
 
         // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if (Auth::user()->id !== $user_id) {
+            if (Auth::user()->id != $user_id) {
                 return view('admin.users.403');
             }
         }
