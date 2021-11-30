@@ -19,11 +19,11 @@
             </div>
             <div class="row">
                 <div class="col-10 col-sm-11">
-                    <input id="percent" type="range" class="form-range" min="0" max="100" step="1" name="percent" onChange="
-                            document.getElementById('rangeval').innerText=document.getElementById('percent').value" style="max-width:500px;">
+                    <input id="percent1" type="range" class="form-range" min="0" max="100" step="1" name="percent" onChange="
+                            document.getElementById('rangeval1').innerText=document.getElementById('percent1').value" style="max-width:500px;">
                 </div>
                 <div class="col-2 col-sm-1 d-flex justify-content-end">
-                    <span id="rangeval">
+                    <span id="rangeval1">
                         50
                         <!-- Default value -->
                     </span>
@@ -33,6 +33,7 @@
 
         <div class="col-sm-auto d-flex align-items-end">
             <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <input type="hidden" name="type" value="technical">
             @csrf
             <button class="btn btn-success mt-1" type="submit">Agregar</button>
         </div>

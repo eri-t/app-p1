@@ -49,7 +49,7 @@ class SkillController extends Controller
             'name' => $data['skill-name'],
             'user_id' => intval($data['user_id']),
             'percent' => $data['percent'],
-            'type' => 'technical'
+            'type' => $data['type'],
         ]);
 
         $status = $skill->save();
@@ -97,8 +97,15 @@ class SkillController extends Controller
                 return view('admin.users.403');
             }
         }
+        
+        $data = $request->all();
 
-        $status = $skill->update($request->all());
+        $status = $skill->update([
+            'user_id' => $user_id,
+            'name' => $data['skill-name'],
+            'percent' => $data['percent'],
+            'type' => $data['type'],
+        ]);
 
         return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'habilidad');
     }

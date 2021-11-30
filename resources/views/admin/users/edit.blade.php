@@ -248,7 +248,10 @@
     <div class="col-12">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="skills-tab" data-bs-toggle="tab" data-bs-target="#skills" type="button" role="tab" aria-controls="skills" aria-selected="true">Habilidades Técnicas</button>
+                <button class="nav-link active" id="technical-skills-tab" data-bs-toggle="tab" data-bs-target="#technical-skills" type="button" role="tab" aria-controls="technical-skills" aria-selected="true">Habilidades Técnicas</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="professional-skills-tab" data-bs-toggle="tab" data-bs-target="#professional-skills" type="button" role="tab" aria-controls="professional-skills" aria-selected="true">Habilidades Profesionales</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="social-tab" data-bs-toggle="tab" data-bs-target="#social" type="button" role="tab" aria-controls="social" aria-selected="false">Redes Sociales</button>
@@ -259,7 +262,7 @@
         </ul>
 
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="skills" role="tabpanel" aria-labelledby="skills-tab">
+            <div class="tab-pane fade show active" id="technical-skills" role="tabpanel" aria-labelledby="technical-skills-tab">
                 <div class="d-flex align-items-start">
                     <div class="nav flex-column nav-pills me-3" id="v-pills-tab-1" role="tablist" aria-orientation="vertical">
                         <button class="nav-link active my-1" id="v-pills-new-1-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new-1" type="button" role="tab" aria-controls="v-pills-new-1" aria-selected="true">Agregar Habilidad</button>
@@ -269,11 +272,32 @@
                     </div>
                     <div class="tab-content flex-grow-1" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-new-1" role="tabpanel" aria-labelledby="v-pills-new-1-tab">
-                            @include('admin.includes.skills-create')
+                            @include('admin.includes.technical-skills-create')
                         </div>
 
                         <div class="tab-pane fade" id="v-pills-edit-1" role="tabpanel" aria-labelledby="v-pills-edit-1-tab">
-                            @include('admin.includes.skills-edit')
+                            @include('admin.includes.technical-skills-edit')
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="professional-skills" role="tabpanel" aria-labelledby="professional-skills-tab">
+                <div class="d-flex align-items-start">
+                    <div class="nav flex-column nav-pills me-3" id="v-pills-tab-4" role="tablist" aria-orientation="vertical">
+                        <button class="nav-link active my-1" id="v-pills-new-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-new-4" type="button" role="tab" aria-controls="v-pills-new-4" aria-selected="true">Agregar Habilidad</button>
+                        @if (count($user->skills)>0)
+                        <button class="nav-link my-1" id="v-pills-edit-4-tab" data-bs-toggle="pill" data-bs-target="#v-pills-edit-4" type="button" role="tab" aria-controls="v-pills-edit-4" aria-selected="false">Editar Habilidades</button>
+                        @endif
+                    </div>
+                    <div class="tab-content flex-grow-1" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-new-4" role="tabpanel" aria-labelledby="v-pills-new-4-tab">
+                            @include('admin.includes.professional-skills-create')
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-edit-4" role="tabpanel" aria-labelledby="v-pills-edit-4-tab">
+                            @include('admin.includes.professional-skills-edit')
                         </div>
 
                     </div>

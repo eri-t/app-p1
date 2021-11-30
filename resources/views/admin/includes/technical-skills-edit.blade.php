@@ -31,6 +31,7 @@
                 </div>
 
                 <div class="col-sm-auto d-flex align-items-end">
+                    <input type="hidden" name="type" value="technical">
                     @csrf
                     @method('PUT')
                     <button class="btn btn-warning mt-1" type="submit">Actualizar</button>
