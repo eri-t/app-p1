@@ -54,7 +54,7 @@
                             @if ($user->image)
                             <img src="{{ $user->get_image }}" alt="{{ $user->name }}" class="img-fluid">
                             @else
-                            <img src="{{ asset('assets/images/hero.png') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('assets/images/hero.png') }}" alt="Default user image" class="img-fluid">
                             @endif
                         </div>
                     </div>

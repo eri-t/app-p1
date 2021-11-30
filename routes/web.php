@@ -6,7 +6,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\NetworkController;
 use App\Http\Controllers\ActivityController;
-use Spatie\Permission\Models\Role;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,21 +49,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('user', UserController::class)->except([
             'index'
         ]);
-    });
-
-    Route::group(['middleware' => ['role:admin']], function () {
-
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
-
-        Route::resource('users', UserController::class)->only([
-            'index'
-        ]);
-
-        //Route::resource('user', UserController::class)->except([
-        //    'show'
-        //]);
 
         Route::resource('skill', SkillController::class);
 
@@ -73,39 +57,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('activity', ActivityController::class);
     });
 
-    Route::group(['middleware' => ['role:client']], function () {
-    /*
-            Route::get('dashboard', function () {
+    Route::group(['middleware' => ['role:admin']], function () {
 
-                return view('dashboard');
-            })->name('dashboard');
-    */
-            //Route::resource('user', UserController::class)->except([
-            //    'index'
-            //]);
-
-            Route::resource('skill', SkillController::class)->except([
-                'index'
-            ]);
-
-            Route::resource('network', NetworkController::class)->except([
-                'index'
-            ]);
-
-            Route::resource('activity', ActivityController::class)->except([
-                'index'
+        Route::resource('users', UserController::class)->only([
+            'index'
         ]);
-        /*
-        Route::get('my-portfolio', function () { 
-            return view('my-portfolio');
-        })->name('my-portfolio');
-        */
-         Route::get('my-portfolio', UserController::class . '@my_portfolio')->name('my-portfolio');
 
-    
     });
-
- 
 
 });
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,13 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $data['user_id']) {
+                return view('admin.users.403');
+            }
+        }
 
         $activity = Activity::create([
             'title' => $data['activity-title'],
@@ -80,6 +88,13 @@ class ActivityController extends Controller
      */
     public function update(Request $request, Activity $activity)
     {
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $activity->user_id) {
+                return view('admin.users.403');
+            }
+        }
+
         $data = $request->all();
 
         $status = $activity->update([
@@ -100,11 +115,18 @@ class ActivityController extends Controller
      */
     public function destroy(Activity $activity)
     {
-        $id = $activity->user_id;
+        $user_id = $activity->user_id;
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $user_id) {
+                return view('admin.users.403');
+            }
+        }
 
         $activity = Activity::find($activity->id);
         $status = $activity->delete();
 
-        return redirect()->to('user/' . $id . '/edit')->with('status', $status)->with('action', 'eliminada')->with('field', 'actividad');
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'eliminada')->with('field', 'actividad');
     }
 }

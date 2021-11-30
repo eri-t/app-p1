@@ -20,7 +20,7 @@
         <div class="col-sm-auto d-flex align-items-end">
             <input type="hidden" name="user_id" value="{{ $user->id }}">
             @csrf
-            <button class="btn btn-success mt-1" type="submit" class="site-btn">Agregar</button>
+            <button class="btn btn-success mt-1" type="submit">Agregar</button>
         </div>
     </div>
 </form>

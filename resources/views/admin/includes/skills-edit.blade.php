@@ -43,7 +43,7 @@
                 <div class="col-sm-auto d-flex align-items-end">
                     @csrf
                     @method('PUT')
-                    <button class="btn btn-warning mt-1" type="submit" class="site-btn">Actualizar</button>
+                    <button class="btn btn-warning mt-1" type="submit">Actualizar</button>
                 </div>
             </div>
         </form>
@@ -53,7 +53,7 @@
         <form action="{{ route('skill.destroy', $skill) }}" method="POST">
             @csrf
             @method('DELETE')
-            <button class="btn btn-danger mt-1" type="submit" class="site-btn">Eliminar</button>
+            <button class="btn btn-danger mt-1" type="submit">Eliminar</button>
         </form>
     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Network;
 use Illuminate\Http\Request;
 
@@ -70,6 +71,14 @@ class NetworkController extends Controller
     public function update(Request $request, Network $network)
     {
         $user_id = $request->user_id;
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $user_id) {
+                return view('admin.users.403');
+            }
+        }
+        
         $url = $request->url;
 
         if($request->active){

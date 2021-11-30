@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Parcial 1 - Aplicaciones Enriquecidas</title>
+    <title>Parcial 2 - Aplicaciones Enriquecidas</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -404,7 +404,11 @@
         @if (Route::has('login'))
         <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             @auth
-            <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                @if(Auth::user()->hasRole('admin'))
+                <a href="{{ url('users') }}" class="text-sm text-gray-700 underline">Panel</a>
+                @else
+                <a href="{{ url('user/' . Auth::user()->id . '/edit') }}" class="text-sm text-gray-700 underline">Panel</a>
+                @endif
             @else
             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 

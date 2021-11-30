@@ -70,10 +70,10 @@ return [
 
         //or if you have a bunch of redirection options
         if (Auth::user()->hasRole('admin')) {
-            return route('dashboard');
+            return route('users.index');
         }
         if (Auth::user()->hasRole('client')) {
-            return route('my-portfolio');
+            return url('user/' . Auth::user()->id . '/edit');
         } else {
             return route('/');
         }

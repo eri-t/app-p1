@@ -17,13 +17,6 @@ class UserController extends Controller
      */
     public function index()
     {
-
-       // dd(Auth::user());
-        
-       /*
-        $user = Auth::user();
-        return view('user.index', compact('user'));
-        */
         $users = User::with('roles','education', 'skills', 'works', 'activities', 'projects', 'posts', 'networks', 'projects.testimonials','works.responsibilities')->latest()->get();
         return view('admin.users.index', compact('users'));
     }
@@ -69,17 +62,17 @@ class UserController extends Controller
     // public function edit($id)
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
-        /*
-
+        // Si no es admin chequear que sea el propio usuario:
         if (Auth::user()->hasRole('client')) {
-            if(Auth::user()->id === $user->id)){
+            if(Auth::user()->id === $user->id){
 
-            // actions
+                return view('admin.users.edit', compact('user'));
             
-            }
+            } 
+            return view('admin.users.403');
         }
-        */
+
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -92,11 +85,12 @@ class UserController extends Controller
     // public function update(Request $request, $id)
     public function update(UserRequest $request, User $user)
     {
-        /*
-        if (!Auth::user()->hasRole('admin') || Auth::user() != $user ) {
-            return route('dashboard');
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $user->id) {
+                return view('admin.users.403');
+            }
         }
-        */
 
         // $user = User::find($id);
 /* (pasado a UserRequest)
@@ -135,6 +129,18 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        // No permitir borrar el usuario admin:
+        if ($id == 1) {
+            return view('admin.users.403');
+        }
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $id) {
+                return view('admin.users.403');
+            }
+        }
+
         $user = User::find($id);
 
         if ($user->image) {
@@ -145,7 +151,7 @@ class UserController extends Controller
         }
         $user->delete();
 
-        return redirect()->to('user');
+        return redirect()->to('users');
     }
 
     /**
@@ -157,20 +163,11 @@ class UserController extends Controller
     {
         Auth::logout();
 
-        return view('welcome');
-    }
+        $users = User::all();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    
-    public function my_portfolio()
-    {
-        $user = User::find(Auth::user()->id)->with('roles', 'education', 'skills', 'works', 'activities', 'projects', 'posts', 'networks', 'projects.testimonials','works.responsibilities')->first();
-        return view('my-portfolio', compact('user'));
+        if ($users) {
+            return view('home')->with('users', $users);
+        }
     }
     
 }

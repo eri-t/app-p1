@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use App\Models\Skill;
 use App\Http\Requests\SkillRequest;
 
@@ -36,6 +37,13 @@ class SkillController extends Controller
     public function store(SkillRequest $request)
     {
         $data = $request->all();
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $data['user_id']) {
+                return view('admin.users.403');
+            }
+        }
 
         $skill = Skill::create([
             'name' => $data['skill-name'],
@@ -81,8 +89,18 @@ class SkillController extends Controller
     // public function update(Request $request, $id)
     public function update(SkillRequest $request, Skill $skill)
     {
+        $user_id = $skill->user_id;
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $user_id) {
+                return view('admin.users.403');
+            }
+        }
+
         $status = $skill->update($request->all());
-        return redirect()->to('user/' . $skill->user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'habilidad');
+
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'habilidad');
     }
 
     /**
@@ -94,11 +112,18 @@ class SkillController extends Controller
     // public function destroy($id)
     public function destroy(Skill $skill)
     {
-        $id = $skill->user_id;
+        $user_id = $skill->user_id;
+
+        // Si no es admin chequear que sea el propio usuario:
+        if (Auth::user()->hasRole('client')) {
+            if (Auth::user()->id !== $user_id) {
+                return view('admin.users.403');
+            }
+        }
 
         $skill = Skill::find($skill->id);
         $status = $skill->delete();
 
-        return redirect()->to('user/' . $id . '/edit')->with('status', $status)->with('action', 'eliminada')->with('field', 'habilidad');
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'eliminada')->with('field', 'habilidad');
     }
 }
