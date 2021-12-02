@@ -89,7 +89,7 @@ class NetworkController extends Controller
 
         $status = $network->users()->sync([$user_id => ['url' => $url, 'active' => $active]]);
 
-        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'red social');
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('field', 'La red social')->with('action', 'modificada');
     }
 
     /**

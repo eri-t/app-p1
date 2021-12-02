@@ -54,7 +54,7 @@ class ActivityController extends Controller
 
         $status = $activity->save();
 
-        return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('action', 'creada')->with('field', 'actividad');
+        return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('field', 'La actividad')->with('action', 'creada');
 
     }
 
@@ -104,7 +104,7 @@ class ActivityController extends Controller
             'user_id' => $activity->user_id,
         ]);
 
-        return redirect()->to('user/' . $activity->user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'actividad');
+        return redirect()->to('user/' . $activity->user_id . '/edit')->with('status', $status)->with('field', 'La actividad')->with('action', 'modificada');
     }
 
     /**
@@ -127,6 +127,6 @@ class ActivityController extends Controller
         $activity = Activity::find($activity->id);
         $status = $activity->delete();
 
-        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'eliminada')->with('field', 'actividad');
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('field', 'La actividad')->with('action', 'eliminada');
     }
 }

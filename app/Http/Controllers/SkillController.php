@@ -54,7 +54,7 @@ class SkillController extends Controller
 
         $status = $skill->save();
 
-        return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('action', 'creada')->with('field', 'habilidad');
+        return redirect()->to('user/' . $data['user_id'] . '/edit')->with('status', $status)->with('field', 'La habilidad')->with('action', 'creada');
     }
 
     /**
@@ -107,7 +107,7 @@ class SkillController extends Controller
             'type' => $data['type'],
         ]);
 
-        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'modificada')->with('field', 'habilidad');
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('field', 'La habilidad')->with('action', 'modificada');
     }
 
     /**
@@ -131,6 +131,6 @@ class SkillController extends Controller
         $skill = Skill::find($skill->id);
         $status = $skill->delete();
 
-        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('action', 'eliminada')->with('field', 'habilidad');
+        return redirect()->to('user/' . $user_id . '/edit')->with('status', $status)->with('field', 'La habilidad')->with('action', 'eliminada');
     }
 }

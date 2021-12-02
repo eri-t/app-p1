@@ -138,4 +138,19 @@ class User extends Authenticatable
     {
         return strtoupper($this->name);
     }
+
+    public function initialize() 
+    {
+        if ($this->id == 1) {
+            $this->assignRole('admin');
+        } else {
+            $this->assignRole('client');
+        }
+
+        $networks = Network::all();
+        foreach ($networks as $network) {
+            $networkId = $network->id;
+            $this->networks()->attach($networkId);
+        };
+    }
 }

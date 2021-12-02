@@ -98,7 +98,7 @@ class UserController extends Controller
             $user->save();
         }
 
-        $user->update($request->all());
+        $status = $user->update($request->all());
 
         if ($request->file('about_img')) {
             Storage::disk('public')->delete($user->about_img);
@@ -106,8 +106,7 @@ class UserController extends Controller
             $user->save();            
         }
 
-        $id = $user->id;
-        return redirect()->to('user/' . $id . '/edit');
+        return redirect()->to('user/' . $user->id . '/edit')->with('status', $status)->with('field', 'El usuario')->with('action', 'modificado');
     }
 
     /**
@@ -138,9 +137,9 @@ class UserController extends Controller
         if ($user->about_img) {
             Storage::disk('public')->delete($user->about_img);
         }
-        $user->delete();
+        $status = $user->delete();
 
-        return redirect()->to('users');
+        return redirect()->to('users')->with('status', $status)->with('field', 'El usuario')->with('action', 'eliminado');
     }
 
     /**

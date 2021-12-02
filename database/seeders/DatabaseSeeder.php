@@ -48,17 +48,7 @@ class DatabaseSeeder extends Seeder
         
         User::factory(5)->create()->each(
             function ($user) {
-                if ($user->id == 1) {
-                    $user->assignRole('admin');
-                } else {
-                    $user->assignRole('client');
-                }
-
-                $networks = Network::all();
-                foreach($networks as $network) { 
-                    $networkId = $network->id;
-                    $user->networks()->attach($networkId);
-                };
+                $user->initialize();
             }
         );
         

@@ -92,12 +92,6 @@
                         @endif
                     </h2>
 
-                    <p class="wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.2s">Hello, I’m {{ $user->name }}
-                        @if($user->job_title)
-                        <span>, {{ $user->job_title }}</span>
-                        @endif
-                        .
-                    </p>
                     @if($user->excerpt)
                     <p>
                         {{ $user->excerpt }}
