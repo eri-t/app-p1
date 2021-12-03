@@ -8,7 +8,7 @@
 
                 <div class="col pt-2">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="switch-{{$network->id}}" name="active" value="1" {{ old('pivot.active', $network->pivot->active) ? "checked" : "" }}>
+                        <input class="form-check-input" type="checkbox" id="switch-{{$network->id}}" name="active" {{ old('pivot.active', $network->pivot->active) ? "checked" : "" }} onchange="toggleDisabled({{ $network->id }})">
                         <label class="form-check-label" for="switch-{{$network->id}}">{{ $network->name }}</label>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                     <label for="slug-{{$network->id}}" class="visually-hidden">
                         {{$network->name}} slug
                     </label>
-                    <input id="slug-{{$network->id}}" type="text" name="url" class="form-control" value="{{ old('pivot.url', $network->pivot->url) }}" placeholder="Nombre de usuario">
+                    <input id="slug-{{$network->id}}" type="text" name="url" class="form-control" value="{{ old('pivot.url', $network->pivot->url) }}" placeholder="Nombre de usuario" {{ old('pivot.active', $network->pivot->active) ? "" : "disabled" }}>
                 </div>
 
                 <div class="col-sm-auto d-flex align-items-end">
@@ -28,14 +28,5 @@
             </div>
         </form>
     </div>
-
-    <div class="col-sm-auto d-flex align-items-end">
-        <form action="{{ route('network.destroy', $network) }}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger" type="submit">Eliminar</button>
-        </form>
-    </div>
-
 </div>
 @endforeach

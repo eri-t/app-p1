@@ -26,7 +26,7 @@ class CreateNetworksUsersTable extends Migration
                 ->on('networks')->onDelete('cascade');
 
             $table->string('url')->nullable();
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
 
             $table->timestamps();
         });

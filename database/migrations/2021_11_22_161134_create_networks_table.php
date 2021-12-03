@@ -15,10 +15,8 @@ class CreateNetworksTable extends Migration
     {
         Schema::create('networks', function (Blueprint $table) {
             $table->id();
-        //    $table->unsignedBigInteger('user_id');
             $table->string('name')->nullable();
             $table->string('url')->nullable();
-        //    $table->string('user_name')->nullable();
             $table->timestamps();
         });
     }

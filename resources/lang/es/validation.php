@@ -177,5 +177,6 @@ return [
         'percent' => "'porcentaje de la habilidad'",
         'activity-title' => "'título de la actividad'",
         'activity-description' => "'descripción de la actividad'",
+        'url' => "'nombre de usuario'", 
     ],
 ];

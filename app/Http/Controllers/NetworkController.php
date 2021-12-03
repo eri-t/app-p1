@@ -78,10 +78,13 @@ class NetworkController extends Controller
                 return view('admin.users.403');
             }
         }
-        
+
         $url = $request->url;
 
         if($request->active){
+            $request->validate([
+                'url' => 'required | max:64',
+            ]);
             $active = true;
         } else {
             $active = false;
