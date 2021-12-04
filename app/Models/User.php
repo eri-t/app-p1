@@ -15,6 +15,8 @@ use App\Models\Work;
 use App\Models\Activity;
 use App\Models\Project;
 use App\Models\Post;
+use App\Models\Network;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -23,6 +25,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +36,18 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'slug',
+        'job_title',
+        'image',
+        'phone_number',
+        'address',
+        'introduction',
+        'about_title',
+        'excerpt',
+        'about_subtitle',
+        'about_img',
+        'skills_title_1',
+        'skills_title_2'
     ];
 
     /**
@@ -93,5 +108,50 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class, 'user_id', 'id');
+    }
+
+    public function networks()
+    {
+        //return $this->belongsToMany(RelatedModel, pivot_table_name, foreign_key_of_current_model_in_pivot_table, foreign_key_of_other_model_in_pivot_table);
+        return $this->belongsToMany(
+            Network::class,
+            'networks_users',
+            'user_id',
+            'network_id'
+        )-> withPivot('active', 'url');
+    }
+
+    public function getGetImageAttribute($key)
+    {
+        if ($this->image) {
+            return url("storage/$this->image");
+        }
+    }
+
+    public function getGetAboutImgAttribute($key)
+    {
+        if ($this->about_img) {
+            return url("storage/$this->about_img");
+        }
+    }
+
+    public function getUppercaseAttribute($key)
+    {
+        return strtoupper($this->name);
+    }
+
+    public function initialize() 
+    {
+        if ($this->id == 1) {
+            $this->assignRole('admin');
+        } else {
+            $this->assignRole('client');
+        }
+
+        $networks = Network::all();
+        foreach ($networks as $network) {
+            $networkId = $network->id;
+            $this->networks()->attach($networkId);
+        };
     }
 }

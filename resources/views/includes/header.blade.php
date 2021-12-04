@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Parcial 1 - Aplicaciones Enriquecidas</title>
+    <title>Parcial 2 - Aplicaciones Enriquecidas</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

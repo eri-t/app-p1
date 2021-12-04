@@ -21,8 +21,13 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        User::factory(5)->create();
+    {      
+        User::factory(5)->create()->each(
+            function ($user) {
+                $user->initialize();
+            }
+        );
+        
         Skill::factory(40)->create();
         Education::factory(15)->create();
         Work::factory(15)->create();

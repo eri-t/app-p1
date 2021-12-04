@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\ActivityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +36,36 @@ Route::get(
         }
     }
 )->name('/');
-
+/*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->name('dashboard');
+*/
+Route::get('logout-user', UserController::class . '@logout_user')->name('logout-user');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+    Route::group(['middleware' => ['role:admin|client']], function () {
+        Route::resource('user', UserController::class)->except([
+            'index'
+        ]);
+
+        Route::resource('skill', SkillController::class);
+
+        Route::resource('network', NetworkController::class);
+
+        Route::resource('activity', ActivityController::class);
+    });
+
+    Route::group(['middleware' => ['role:admin']], function () {
+
+        Route::resource('users', UserController::class)->only([
+            'index'
+        ]);
+
+    });
+
+});
 
 // Acceder al portfolio sólo si se está logueado:
 /*
@@ -49,7 +79,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/portfolio', function () {
 Route::get(
     'portfolio/{slug}',
     function ($slug) {
-        $user = User::with('education', 'skills', 'works', 'activities', 'projects', 'posts', 'projects.testimonials', 'works.responsibilities')->where('slug', $slug)->first();
+        $user = User::with('education', 'skills', 'works', 'activities', 'projects', 'posts','networks', 'projects.testimonials', 'works.responsibilities')->where('slug', $slug)->first();
 
         $activityIcons = array("fa-object-ungroup", "fa-code", "fa-bullseye");
         $iconColors = array("sky-color", "iron-color", "purple-color");
@@ -69,3 +99,13 @@ Route::get(
         }
     }
 )->name('portfolio/{slug}');
+
+/*
+Route::resource('user', UserController::class);
+
+Route::resource('skill', SkillController::class);
+
+Route::resource('network', NetworkController::class);
+
+Route::resource('activity', ActivityController::class);
+*/

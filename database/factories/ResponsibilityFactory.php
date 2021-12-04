@@ -23,7 +23,7 @@ class ResponsibilityFactory extends Factory
     {
         return [
             'description' => $this->faker->word(),
-            'work_id'     => rand(1, 20),
+            'work_id'     => rand(1, 15),
         ];
     }
 }

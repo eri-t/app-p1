@@ -19,6 +19,8 @@ class CreateActivitiesTable extends Migration
             $table->string('title')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->text('description')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

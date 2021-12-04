@@ -1527,7 +1527,7 @@ body {
   margin-top: 20px;
 }
 
-.mh-about .mh-about-inner p {
+.mh-about .mh-about-inner p:last-of-type {
   margin-bottom: 30px;
 }
 

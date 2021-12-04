@@ -10,6 +10,17 @@ class Activity extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'user_id'
+    ];
+
     public function user()
     {
         $this->belongsTo(User::class);
