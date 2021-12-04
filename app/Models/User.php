@@ -36,6 +36,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'slug',
         'job_title',
         'image',
         'phone_number',

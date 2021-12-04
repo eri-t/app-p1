@@ -93,10 +93,13 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <ul class="social-icon">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-github"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                                @foreach ($user->networks as $network)
+                                                @if ($network->pivot->active && $network->pivot->url)
+
+                                                <li><a href="https://{{$network->url}}/{{$network->pivot->url}}" target="_blank"><i class="fa fa-{{ $network->name }}"></i></a></li>
+
+                                                @endif
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
