@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateNetworksTable extends Migration
 {
@@ -19,6 +20,25 @@ class CreateNetworksTable extends Migration
             $table->string('url')->nullable();
             $table->timestamps();
         });
+
+        DB::table('networks')->insert([
+            [
+                'name' => 'facebook',
+                'url' => 'facebook.com',
+            ],
+            [
+                'name' => 'twitter',
+                'url' => 'twitter.com',
+            ],
+            [
+                'name' => 'github',
+                'url' => 'github.com',
+            ],
+            [
+                'name' => 'dribbble',
+                'url' => 'dribbble.com',
+            ]
+        ]);
     }
 
     /**

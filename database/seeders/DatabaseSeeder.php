@@ -12,8 +12,6 @@ use App\Models\Project;
 use App\Models\Responsibility;
 use App\Models\Testimonial;
 use App\Models\Post;
-use App\Models\Network;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,29 +21,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        
-        DB::table('networks')->insert([
-            [
-                'name' => 'facebook',
-                'url' => 'facebook.com',
-            ],
-            [
-                'name' => 'twitter',
-                'url' => 'twitter.com',
-            ],
-            [
-                'name' => 'github',
-                'url' => 'github.com',
-            ],
-            [
-                'name' => 'dribbble',
-                'url' => 'dribbble.com',
-            ]
-        ]);
-
-        // User::factory(5)->create();
-        
+    {      
         User::factory(5)->create()->each(
             function ($user) {
                 $user->initialize();
